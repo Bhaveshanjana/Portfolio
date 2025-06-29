@@ -38,12 +38,12 @@ const ProjectCard = ({ project }: projectProps) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <IoLogoGithub className=" md:text-xl hover:scale-110 transition-all duration-200 hover:text-white" />
+                <IoLogoGithub className=" md:text-xl hover:scale-110 transition-all duration-200 dark:hover:text-blue-500" />
               </a>
             )}
             {project.link && (
               <a href={project.link} target="_blank" rel="noopener noreferrer">
-                <PiLink className="md:text-xl hover:scale-110 transition-all duration-200 hover:text-white" />
+                <PiLink className="md:text-xl hover:scale-110 transition-all duration-200 dark:hover:text-blue-500" />
               </a>
             )}
           </div>

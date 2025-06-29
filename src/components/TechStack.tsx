@@ -8,13 +8,13 @@ type data = {
 
 const TechStack = () => {
   const techStack: data[] = [
-    { name: "CSS", image: "/css.png" },
-    { name: "HTML", image: "/html.png" },
-    { name: "JavaScript", image: "/javascript.png" },
-    { name: "TypeScript", image: "/typescript.webp" },
-    { name: "TailwindCSS", image: "/tailwind.png" },
     { name: "NextJs", image: "/nextjs.png" },
     { name: "ReactJs", image: "/react.png" },
+    { name: "TypeScript", image: "/typescript.webp" },
+    { name: "JavaScript", image: "/javascript.png" },
+    { name: "CSS", image: "/css.png" },
+    { name: "HTML", image: "/html.png" },
+    { name: "TailwindCSS", image: "/tailwind.png" },
     { name: "MongoDB", image: "/mongo.png" },
     { name: "Expressjs", image: "/express.png" },
     { name: "Node", image: "/node.png" },
@@ -26,12 +26,12 @@ const TechStack = () => {
   ];
   return (
     <>
-      <h1 className="dark:text-gray-300 mt-9 mb-4 md:text-lg">Tech Stack</h1>
+      <h1 className="dark:text-gray-300 mt-9 mb-2 md:text-lg">Tech Stack</h1>
       <div className="flex flex-wrap gap-2 ">
         {techStack.map((content) => (
           <div
             key={content.name}
-            className="flex items-center gap-2 rounded-lg bg-neutral-800 px-3 py-0.5 text-sm font-medium text-neutral-300 dark:text-gray-400"
+            className="flex items-center gap-2 rounded-lg bg-transparent border border-gray-300 px-3 py-0.5 text-sm  text-black dark:text-gray-200 dark:bg-gray-900 dark:border-gray-700 cursor-pointer"
           >
             <Image
               src={content.image}
