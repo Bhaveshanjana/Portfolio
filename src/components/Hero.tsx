@@ -1,11 +1,12 @@
 import React from "react";
 import HyperText from "./HyperText";
+import { bricolage_grotesque, manrope } from "@/utils/fonts";
 
 const Hero = () => {
   return (
     <div>
       <div className="mt-36 mx-4">
-        <h2 className="dark:text-gray-400">
+        <h2 className={`dark:text-gray-400 ${manrope}`}>
           <HyperText
             text="Hi, am Bhavesh"
             className="text-lg dark:text-gray-200"
