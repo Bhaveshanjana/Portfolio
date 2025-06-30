@@ -3,6 +3,7 @@ import "./globals.css";
 import DarkModeProvider from "@/context/DarkModeContext";
 import Navbar from "@/components/Navbar";
 import { ToastContainer } from "react-toastify";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Bhavesh",
@@ -28,6 +29,7 @@ export default function RootLayout({
           <ToastContainer position="bottom-right" />
           <Navbar />
           {children}
+          <Analytics/>
         </body>
       </DarkModeProvider>
     </html>
