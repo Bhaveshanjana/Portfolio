@@ -4,6 +4,7 @@ import DarkModeProvider from "@/context/DarkModeContext";
 import Navbar from "@/components/Navbar";
 import { ToastContainer } from "react-toastify";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Bhavesh",
@@ -29,7 +30,8 @@ export default function RootLayout({
           <ToastContainer position="bottom-right" />
           <Navbar />
           {children}
-          <Analytics/>
+          <SpeedInsights />
+          <Analytics />
         </body>
       </DarkModeProvider>
     </html>
