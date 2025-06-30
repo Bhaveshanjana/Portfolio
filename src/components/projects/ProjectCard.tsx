@@ -7,9 +7,9 @@ type projectProps = {
   project: {
     title: string;
     image: string;
-    tech: [];
-    link: string;
-    github: string;
+    tech: string[];
+    link?: string;
+    github?: string;
   };
 };
 const ProjectCard = ({ project }: projectProps) => {

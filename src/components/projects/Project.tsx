@@ -1,13 +1,13 @@
 import React from "react";
 import ProjectCard from "./ProjectCard";
 
-type project = {
-  title: string;
-  image: string;
-  github?: string;
-  link?: string;
-  tech: string[];
-};
+  type project = {
+    title: string;
+    image: string;
+    github?: string;
+    link?: string;
+    tech: string[];
+  };
 const Project = () => {
   const data: project[] = [
     {

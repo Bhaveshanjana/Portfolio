@@ -32,11 +32,6 @@ export default function HyperText({
   const getRandomLetter = () =>
     ALPHABETS[Math.floor(Math.random() * ALPHABETS.length)];
 
-  const startScramble = () => {
-    iterations.current = 0;
-    setTrigger(true);
-  };
-
   useEffect(() => {
     const interval = setInterval(
       () => {

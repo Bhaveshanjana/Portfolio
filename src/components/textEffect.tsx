@@ -3,14 +3,18 @@
 import { motion, Variants } from "framer-motion";
 import React from "react";
 
-const blurVariants: Variants = {
+const getBlurVariants = (delay: number): Variants => ({
   hidden: { opacity: 0, filter: "blur(12px)" },
   visible: {
     opacity: 1,
     filter: "blur(0px)",
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+      delay,
+    },
   },
-};
+});
 
 type SectionEffectProps = {
   children: React.ReactNode;
@@ -28,16 +32,7 @@ export default function SectionEffect({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
-      variants={{
-        hidden: blurVariants.hidden,
-        visible: {
-          ...blurVariants.visible,
-          transition: {
-            ...blurVariants.visible.transition,
-            delay,
-          },
-        },
-      }}
+      variants={getBlurVariants(delay)}
       className={className}
     >
       {children}
