@@ -1,3 +1,4 @@
+import { bricolage_grotesque } from "@/utils/fonts";
 import Image from "next/image";
 import React from "react";
 
@@ -39,7 +40,7 @@ const TechStack = () => {
               height={18}
               width={18}
             />
-            <span>{content.name}</span>
+            <span className={`${bricolage_grotesque}`}>{content.name}</span>
           </div>
         ))}
       </div>

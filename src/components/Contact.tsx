@@ -44,10 +44,10 @@ const Contact = () => {
     }
   };
   return (
-    <div className="dark:text-white text-gray-700 space-y-4 mt-9 mb-6 mx-4">
-      <h1 className="text-xl">Reach me out via email</h1>
+    <div className=" text-gray-700 space-y-4 mt-9 mb-6 mx-4">
+      <h1 className="text-xl dark:text-gray-400">Reach me out via email</h1>
       <form onSubmit={sendEmailMessage}>
-        <h3>Your email</h3>
+        <h3 className="dark:text-gray-400">Email</h3>
         <input
           type="email"
           name="user_email"
@@ -56,10 +56,10 @@ const Contact = () => {
           onChange={(e) => {
             setEmail(e.target.value);
           }}
-          placeholder="enter your email"
-          className="my-1 w-full mx-auto rounded-sm p-2 border-[#374151] bg-transparent border shadow-sm "
+          placeholder="example@gmail.com"
+          className="my-1 w-full mx-auto rounded-sm p-2 border-[#374151] bg-transparent border shadow-sm placeholder:text-gray-600"
         />
-        <h3 className="mt-3">Your Message</h3>
+        <h3 className="mt-3 dark:text-gray-400">Message</h3>
         <input
           type="text"
           name="user_message"
@@ -69,7 +69,7 @@ const Contact = () => {
             setMessage(e.target.value);
           }}
           placeholder="Enter your message"
-          className="w-full mx-auto my-1 border-[#374151] bg-transparent border shadow-sm p-2 rounded-sm"
+          className="w-full mx-auto my-1 border-[#374151] bg-transparent border shadow-sm p-2 rounded-sm placeholder:text-gray-600"
         />
         <button
           type="submit"
@@ -78,7 +78,10 @@ const Contact = () => {
           {isEmailSending ? "Sending message..." : "Send message"}
         </button>
       </form>
-      <div className="border-t border-gray-400 mt-8 text-center text-xs md:text-lg">Designed by bhavesh</div>
+      {/* Footer */}
+      <div className="border-t border-gray-400 mt-8 text-center text-xs md:text-lg font-mono dark:text-gray-400">
+        Designed by bhavesh
+      </div>
     </div>
   );
 };
