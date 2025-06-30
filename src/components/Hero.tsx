@@ -1,6 +1,6 @@
 import React from "react";
 import HyperText from "./HyperText";
-import { bricolage_grotesque, manrope } from "@/utils/fonts";
+import { manrope } from "@/utils/fonts";
 
 const Hero = () => {
   return (
