@@ -4,7 +4,7 @@ import HyperText from "./HyperText";
 const Hero = () => {
   return (
     <div>
-      <div className="mt-36">
+      <div className="mt-36 mx-4">
         <h2 className="dark:text-gray-400">
           <HyperText
             text="Hi, am Bhavesh"

@@ -26,8 +26,8 @@ const TechStack = () => {
   ];
   return (
     <>
-      <h1 className="dark:text-gray-300 mt-9 mb-2 md:text-lg">Tech Stack</h1>
-      <div className="flex flex-wrap gap-2 ">
+      <h1 className="dark:text-gray-300 mb-2 md:text-lg mx-4">Tech Stack</h1>
+      <div className="flex flex-wrap gap-2 mx-4">
         {techStack.map((content) => (
           <div
             key={content.name}

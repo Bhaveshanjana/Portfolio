@@ -16,7 +16,7 @@ const ProjectCard = ({ project }: projectProps) => {
   return (
     <div className="dark:bg-gray-800/80 bg-gray-300 flex flex-col items-center rounded-lg hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 my-1 overflow-hidden shadow-md">
       <div className="relative w-full h-[180px]">
-        <div className="absolute inset-1">
+        <div className="absolute inset-2">
           <Image
             fill
             src={project.image}
@@ -38,12 +38,12 @@ const ProjectCard = ({ project }: projectProps) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <IoLogoGithub className=" md:text-xl hover:scale-110 transition-all duration-200 dark:hover:text-blue-500" />
+                <IoLogoGithub className="text-xl hover:scale-110 transition-all duration-200 dark:hover:text-blue-500" />
               </a>
             )}
             {project.link && (
               <a href={project.link} target="_blank" rel="noopener noreferrer">
-                <PiLink className="md:text-xl hover:scale-110 transition-all duration-200 dark:hover:text-blue-500" />
+                <PiLink className="text-xl hover:scale-110 transition-all duration-200 dark:hover:text-blue-500" />
               </a>
             )}
           </div>

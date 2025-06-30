@@ -39,7 +39,7 @@ const Navbar = () => {
             </div>
           </Link>
 
-          <Link href="www.linkedin.com/in/bhavesh-anjana">
+          <Link href="https://linkedin.com/in/bhavesh-anjana">
             <div content="Linkedin">
               <div className="hover:px-3 max-sm:hover:px-2 py-2.5 dark:hover:bg-[#262626] hover:bg-[#9b9be754]  rounded-full transition-all duration-300">
                 <IoLogoLinkedin className="w-5 h-5  text-black dark:text-white" />

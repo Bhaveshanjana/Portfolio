@@ -47,8 +47,8 @@ const Project = () => {
   ];
   return (
     <div>
-      <h1 className="dark:text-gray-300 mt-9 md:text-xl">Projects</h1>
-      <div className="md:grid lg:grid-cols-2 space-x-2.5">
+      <h1 className="dark:text-gray-300 mt-9 md:text-xl mx-4">Projects</h1>
+      <div className="md:grid lg:grid-cols-2 md:space-x-2.5 mx-4 flex flex-col gap-1">
         {data.map((projectItem) => (
           <ProjectCard key={projectItem.title} project={projectItem} />
         ))}
