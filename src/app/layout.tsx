@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import DarkModeProvider from "@/context/DarkModeContext";
 import Navbar from "@/components/Navbar";
+import { ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <DarkModeProvider>
         <body className={`bg-white dark:bg-black`}>
+          <ToastContainer position="bottom-right" />
           <Navbar />
           {children}
         </body>
