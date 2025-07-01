@@ -1,46 +1,54 @@
-"use client";
+import React, { useRef } from "react";
+import { motion, useAnimationFrame, HTMLMotionProps } from "framer-motion";
 
-import React from "react";
-import { motion, type AnimationProps } from "framer-motion";
-import { manrope } from "@/utils/fonts";
-
-export interface ShinyButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ShinyButtonProps extends HTMLMotionProps<"button"> {
   children: React.ReactNode;
   className?: string;
 }
 
-const animationProps: AnimationProps = {
-  initial: { "--x": "100%", scale: 0.8 } as React.CSSProperties,
-  animate: { "--x": "-100%", scale: 1 } as React.CSSProperties,
-  whileTap: { scale: 0.95 },
-  transition: {
-    repeat: Infinity,
-    repeatType: "loop",
-    repeatDelay: 1,
-    type: "spring",
-    stiffness: 20,
-    damping: 15,
-    mass: 2,
-    scale: {
-      type: "spring",
-      stiffness: 200,
-      damping: 5,
-      mass: 0.5,
-    },
-  },
-};
-
 export const ShinyButton: React.FC<ShinyButtonProps> = ({
   children,
   className = "",
+  style,
   ...props
 }) => {
+  const ref = useRef<HTMLButtonElement>(null);
+
+  // Animate --x using useAnimationFrame
+  useAnimationFrame((t) => {
+    // 2.5s loop, value from 100% to -100%
+    const progress = (t / 2500) % 1;
+    const value = 100 - 200 * progress;
+    if (ref.current) {
+      ref.current.style.setProperty("--x", `${value}%`);
+    }
+  });
+
   return (
     <motion.button
-      {...animationProps}
+      ref={ref}
+      initial={{ scale: 0.8 }}
+      animate={{ scale: 1 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{
+        type: "spring",
+        stiffness: 20,
+        damping: 15,
+        mass: 2,
+        scale: {
+          type: "spring",
+          stiffness: 200,
+          damping: 5,
+          mass: 0.5,
+        },
+      }}
       {...props}
-      className={`relative rounded-lg px-8 py-2 mt-6 font-medium backdrop-blur-xl transition-shadow duration-300 ease-in-out bg-gray-100/80  dark:bg-transparent hover:shadow dark:bg-[radial-gradient(circle_at_50%_0%,hsl(var(--primary)/0.1)_0%,transparent_60%)] dark:hover:shadow-[0_0_20px_hsl(var(--primary)/0.1)] ${className} ${manrope}`}
+      style={{
+        ...style,
+        // Set the initial value for --x
+        ["--x" as string]: "100%",
+      }}
+      className={`relative rounded-lg px-8 py-2 mt-6 font-medium backdrop-blur-xl transition-shadow duration-300 ease-in-out bg-gray-100/80 dark:bg-transparent hover:shadow dark:bg-[radial-gradient(circle_at_50%_0%,hsl(var(--primary)/0.1)_0%,transparent_60%)] dark:hover:shadow-[0_0_20px_hsl(var(--primary)/0.1)] ${className}`}
     >
       <span
         className="relative block size-full text-sm uppercase tracking-wide text-[rgb(0,0,0,0.65)] dark:font-light dark:text-[rgb(255,255,255,0.9)]"
