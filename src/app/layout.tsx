@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "Bhavesh Anjana, Full Stack Developer, Web Developer, Portfolio, JavaScript, TypeScript, React, Next.js, software engineer",
   authors: [{ name: "Bhavesh Anjana" }],
   icons: {
-    icon: "/b.png",
+    icon: "/b.ico",
   },
 };
 
