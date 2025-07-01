@@ -1,3 +1,11 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
+
+:root {
+  --primary: 221 83% 53%; 
+}
+
+.dark {
+  --primary: 221 83% 60%; 
+}
