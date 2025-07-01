@@ -44,7 +44,7 @@ const Contact = () => {
     }
   };
   return (
-    <div className=" text-gray-700 space-y-4 mt-9 mb-6 mx-4">
+    <div className=" text-gray-700 space-y-4 mt-9 mb-1 mx-4">
       <h1 className="text-xl dark:text-gray-400">Reach me out via email</h1>
       <form onSubmit={sendEmailMessage}>
         <h3 className="dark:text-gray-400">Email</h3>
@@ -79,7 +79,7 @@ const Contact = () => {
         </button>
       </form>
       {/* Footer */}
-      <div className="border-t border-gray-400 mt-8 text-center text-xs md:text-lg font-mono dark:text-gray-400">
+      <div className="border-t border-gray-400 mt-5 text-center text-xs md:text-sm font-mono dark:text-gray-400">
         Designed by bhavesh
       </div>
     </div>

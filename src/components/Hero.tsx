@@ -8,7 +8,7 @@ const Hero = () => {
       <div className="mt-36 mx-4">
         <h2 className={`dark:text-gray-400 ${manrope}`}>
           <HyperText
-            text="Hi, am Bhavesh"
+            text="Hi,i am Bhavesh"
             className="text-lg dark:text-gray-200"
             duration={1000}
           />

@@ -24,6 +24,7 @@ const TechStack = () => {
     { name: "Prisma", image: "/prisma.png" },
     { name: "PostgreSQL", image: "/postgresql.png" },
     { name: "Motion", image: "/motion.png" },
+    { name: "Shadcn", image: "/shadcn.png" },
   ];
   return (
     <>
