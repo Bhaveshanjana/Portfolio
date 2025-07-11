@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import ProjectCard from "./ProjectCard";
 import Image from "next/image";
 import { IoLogoGithub } from "react-icons/io5";
