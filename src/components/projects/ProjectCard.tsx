@@ -15,7 +15,7 @@ type projectProps = {
 };
 const ProjectCard = ({ project }: projectProps) => {
   return (
-    <div className="dark:bg-[#27272a26] dark:hover:bg-[#1b1b1d] bg-[#2b2b2d0a] border dark:border-[#27272a] border-gray-300 rounded-lg hover:shadow-xl transition-all duration-300 my-1 overflow-hidden shadow-lg">
+    <div className="dark:bg-[#27272a26] dark:hover:bg-[#1b1b1d] bg-[#2b2b2d0a] border dark:border-[#27272a] border-gray-300 rounded-lg hover:shadow-xl transition-all duration-300  overflow-hidden shadow-lg">
       {/* Project's image */}
       <div className="relative w-full h-[180px]">
         <div className="absolute inset-2">

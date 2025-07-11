@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import Projects from "@/components/projects/Project";
 import TechStack from "@/components/TechStack";
 import React from "react";
-import SectionEffect from "@/components/textEffect";
+import SectionEffect from "@/components/utils/textEffect";
 
 const page = () => {
   return (
