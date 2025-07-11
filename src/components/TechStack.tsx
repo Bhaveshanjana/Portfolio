@@ -28,12 +28,14 @@ const TechStack = () => {
   ];
   return (
     <>
-      <h1 className="dark:text-gray-300 mb-2 md:text-lg mx-4">Tech Stack</h1>
-      <div className="flex flex-wrap gap-2 mx-4">
+      <h1 className="dark:text-gray-300 mb-2.5 text-sm md:text-[16px] mx-5 bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2 border-gray-600 dark:border-gray-400 ">
+        <span className="ml-2">Tech Stack</span>
+      </h1>
+      <div className="flex flex-wrap gap-2 mx-5">
         {techStack.map((content) => (
           <div
             key={content.name}
-            className="flex items-center gap-2 rounded-lg bg-transparent border border-gray-300 px-3 py-0.5 text-sm  text-black dark:text-gray-200 dark:bg-gray-900 dark:border-gray-700 cursor-pointer"
+            className="flex items-center gap-2 rounded-lg bg-transparent border border-gray-300 px-2 md:px-4 py-0.5 text-[11px] md:text-sm  text-black dark:text-gray-400 dark:bg-gray-900 dark:border-gray-700 cursor-pointer"
           >
             <Image
               src={content.image}

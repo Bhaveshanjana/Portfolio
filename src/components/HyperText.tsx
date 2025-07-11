@@ -64,7 +64,7 @@ export default function HyperText({
   }, [text, duration, trigger, animateOnLoad]);
 
   return (
-    <div className="flex overflow-hidden cursor-default">
+    <div className="flex overflow-hidden cursor-default mb-1 md:mb-2">
       <AnimatePresence mode="wait">
         {displayText.map((char, i) => (
           <motion.span

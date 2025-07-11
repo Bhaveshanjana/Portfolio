@@ -9,7 +9,7 @@ const page = () => {
   return (
     <div>
       {/* Hero Section */}
-      <div className="max-w-[680px] mx-auto space-y-16">
+      <div className="max-w-[680px] mx-auto space-y-10">
         <SectionEffect delay={0.1}>
           <Hero />
         </SectionEffect>
