@@ -1,5 +1,5 @@
 import React from "react";
-import HyperText from "./HyperText";
+import HyperText from "./utils/HyperText";
 import { manrope } from "@/utils/fonts";
 
 const Hero = () => {
