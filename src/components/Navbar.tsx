@@ -13,15 +13,17 @@ const Navbar = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   return (
     <nav className="w-full py-6 flex justify-center fixed top-0 z-50 ">
-      <div className="rounded-full w-[250px] md:w-[500px] px-2 bg-white/10 backdrop-blur-sm border border-gray-300 dark:border-gray-700 flex items-center justify-center dark:shadow-none dark:bg-gray-900/50 ">
+      <div className="rounded-full w-[250px] md:w-[500px] px-2 bg-white/30 backdrop-blur-sm border border-gray-300 dark:border-gray-700 flex items-center justify-center dark:shadow-none dark:bg-gray-900/50 ">
         <div className="flex justify-center px-2 items-center  gap-8  transition-all">
-          <Link href="#">
-            <div>
-              <div className="hover:px-3 max-sm:hover:px-2 py-2.5 dark:hover:bg-[#262626] hover:bg-[#9b9be754] rounded-full transition-all duration-300">
-                <GoFile className="w-5 h-5  text-black dark:text-white" />
-              </div>
+          <a
+            href="https://drive.google.com/file/d/1RO7ETBM8YmkltD1TACJlgcqMngvlwVJY/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div className="hover:px-3 max-sm:hover:px-2 py-2.5 dark:hover:bg-[#262626] hover:bg-[#9b9be754] rounded-full transition-all duration-300">
+              <GoFile className="w-5 h-5 text-black dark:text-white" />
             </div>
-          </Link>
+          </a>
 
           <Link href="https://github.com/Bhaveshanjana">
             <div>
@@ -54,9 +56,9 @@ const Navbar = () => {
             <div className="flex items-center hover:px-3 py-2.5 dark:hover:bg-[#262626] hover:bg-[#9b9be754]  rounded-full transition-all duration-300">
               <button className="cursor-pointer">
                 {isDarkMode ? (
-                  <RiMoonClearLine className="w-5 h-5  dark:text-white " />
+                  <TiWeatherSunny className="w-5 h-5 dark:text-white" />
                 ) : (
-                  <TiWeatherSunny className="w-5 h-5 " />
+                  <RiMoonClearLine className="w-5 h-5 " />
                 )}
               </button>
             </div>
