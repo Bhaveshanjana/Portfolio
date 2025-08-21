@@ -9,22 +9,22 @@ type data = {
 
 const TechStack = () => {
   const techStack: data[] = [
-    { name: "NextJs", image: "/nextjs.png" },
-    { name: "ReactJs", image: "/react.png" },
-    { name: "TypeScript", image: "/typescript.webp" },
-    { name: "JavaScript", image: "/javascript.png" },
-    { name: "CSS", image: "/css.png" },
-    { name: "HTML", image: "/html.png" },
-    { name: "TailwindCSS", image: "/tailwind.png" },
-    { name: "MongoDB", image: "/mongo.png" },
-    { name: "Expressjs", image: "/express.png" },
-    { name: "Node", image: "/node.png" },
-    { name: "Git", image: "/git.png" },
-    { name: "Github", image: "/github.png" },
-    { name: "Prisma", image: "/prisma.png" },
-    { name: "PostgreSQL", image: "/postgresql.png" },
-    { name: "Motion", image: "/motion.png" },
-    { name: "Shadcn", image: "/shadcn.png" },
+    { name: "NextJs", image: "/techstack/nextjs.png" },
+    { name: "ReactJs", image: "/techstack/react.png" },
+    { name: "TypeScript", image: "/techstack/typescript.webp" },
+    { name: "JavaScript", image: "/techstack/javascript.png" },
+    { name: "CSS", image: "/techstack/css.png" },
+    { name: "HTML", image: "/techstack/html.png" },
+    { name: "TailwindCSS", image: "/techstack/tailwind.png" },
+    { name: "MongoDB", image: "/techstack/mongo.png" },
+    { name: "Expressjs", image: "/techstack/express.png" },
+    { name: "Node", image: "/techstack/node.png" },
+    { name: "Git", image: "/techstack/git.png" },
+    { name: "Github", image: "/techstack/github.png" },
+    { name: "Prisma", image: "/techstack/prisma.png" },
+    { name: "PostgreSQL", image: "/techstack/postgresql.png" },
+    { name: "Motion", image: "/techstack/motion.png" },
+    { name: "Shadcn", image: "/techstack/shadcn.png" },
   ];
   return (
     <>
