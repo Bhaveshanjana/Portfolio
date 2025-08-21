@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
+import { sans } from "@/utils/fonts";
 
 const Contact = () => {
   const [email, setEmail] = useState<string>("");
@@ -45,8 +46,8 @@ const Contact = () => {
   };
   return (
     <div className=" text-gray-700 space-y-5 mt-9 mb-1 mx-6">
-      <h1 className=" md:text-[17px] dark:text-gray-400 bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2 border-gray-600 dark:border-gray-400">
-        <span className="ml-2 ">Reach me out via email</span>
+      <h1 className=" md:text-[17px] dark:text-gray-200 bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2 border-gray-600 dark:border-gray-400">
+        <span className={`ml-2 ${sans}`}>Reach me out via email</span>
       </h1>
       <form onSubmit={sendEmailMessage}>
         <h3 className="dark:text-gray-400 text-sm md:text-[16px] -mt-2">
@@ -85,7 +86,7 @@ const Contact = () => {
         </button>
       </form>
       {/* Footer */}
-      <div className="border-t dark:border-[#27272a] -mt-2.5 text-center text-[11px] md:text-sm font-mono dark:text-gray-200">
+      <div className="border-t dark:border-[#27272a] -mt-2.5 text-center text-[11px] md:text-xs font-mono dark:text-gray-300">
         Created by Bhavesh
       </div>
     </div>

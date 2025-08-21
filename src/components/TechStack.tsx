@@ -1,4 +1,4 @@
-import { bricolage_grotesque } from "@/utils/fonts";
+import { bricolage_grotesque, sans } from "@/utils/fonts";
 import Image from "next/image";
 import React from "react";
 
@@ -28,8 +28,8 @@ const TechStack = () => {
   ];
   return (
     <>
-      <h1 className="dark:text-gray-300 mb-2.5 text-sm md:text-[16px] mx-5 bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2 border-gray-600 dark:border-gray-400 ">
-        <span className="ml-2">Tech Stack</span>
+      <h1 className="dark:text-gray-200 mb-2.5 text-sm md:text-[16px] mx-5 bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2 border-gray-600 dark:border-gray-400 ">
+        <span className={`ml-2 ${sans}`}>Tech Stack</span>
       </h1>
       <div className="flex flex-wrap gap-2 mx-5">
         {techStack.map((content) => (
@@ -43,7 +43,7 @@ const TechStack = () => {
               height={18}
               width={18}
             />
-            <span className={`${bricolage_grotesque}`}>{content.name}</span>
+            <span className={`text-gray-300 ${bricolage_grotesque}`}>{content.name}</span>
           </div>
         ))}
       </div>
