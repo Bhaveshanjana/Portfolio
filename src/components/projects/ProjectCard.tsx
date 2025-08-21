@@ -1,4 +1,4 @@
-import { bricolage_grotesque } from "@/utils/fonts";
+import { bricolage_grotesque, urban } from "@/utils/fonts";
 import Image from "next/image";
 import React from "react";
 import { IoLogoGithub } from "react-icons/io5";
@@ -20,10 +20,10 @@ const ProjectCard = ({ project }: projectProps) => {
         <span className="absolute top-0 left-0 w-2 h-2 border-t border-l border-gray-600 dark:border-gray-100 opacity-0 group-hover:opacity-100 transition duration-300"></span>
         <span className="absolute top-0 right-0 w-2 h-2 border-t border-r border-gray-600 dark:border-gray-100 opacity-0 group-hover:opacity-100 transition duration-300"></span>
 
-        {/* <!-- Bottom-left corner --> */}
+        {/* Bottom-left corner */}
         <span className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-gray-600 dark:border-gray-100 opacity-0 group-hover:opacity-100 transition duration-300"></span>
 
-        {/* <!-- Bottom-right corner --> */}
+        {/* Bottom-right corner */}
         <span className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-gray-600 dark:border-gray-100 opacity-0 group-hover:opacity-100 transition duration-300"></span>
       </div>
 
@@ -42,7 +42,7 @@ const ProjectCard = ({ project }: projectProps) => {
       {/* Project title & Link's */}
       <div className="flex flex-col w-full">
         <div className="flex justify-between items-center mb-1 mx-2.5">
-          <h3 className="dark:text-gray-100 text-gray-700 text-sm">
+          <h3 className={`dark:text-gray-100 text-gray-700 text-sm tracking-wider  ${urban}`}>
             {project.title}
           </h3>
           <div className="flex gap-2">
@@ -64,7 +64,7 @@ const ProjectCard = ({ project }: projectProps) => {
         </div>
         {/* Description */}
         <div className=" gap-2 mb-1 mx-2.5">
-          <div className="dark:bg-transparent text-xs">
+          <div className="dark:bg-transparent text-xs lg:text-[11px]">
             <span className={`${bricolage_grotesque} dark:text-gray-500`}>
               {project.description}
             </span>

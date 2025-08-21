@@ -5,7 +5,7 @@ import ProjectCard from "./ProjectCard";
 import Image from "next/image";
 import { IoLogoGithub } from "react-icons/io5";
 import { PiLink } from "react-icons/pi";
-import { bricolage_grotesque } from "@/utils/fonts";
+import { bricolage_grotesque, sans, urban } from "@/utils/fonts";
 
 type project = {
   title: string;
@@ -66,21 +66,23 @@ const Project = () => {
       category: "saas",
       link: "https://ssmin.vercel.app/",
       description:
-        "Landing page for an Finane company 'SSM'. built with next and motion",
+        "Landing page for an Finance company 'SSM'. built with next and motion",
     },
     {
-      title: "Artistly",
-      image: "/projects/Artistly.png",
+      title: "OpenSphere",
+      image: "/projects/OpenSphere.png",
       category: "saas",
-      link: "https://artistly-rho-three.vercel.app/",
+      link: "https://opensphere.vercel.app/",
+      github: "https://github.com/Bhaveshanjana/OpenSphere",
       description:
-        "Landing Page from as assignment. built with next and motion",
+        "An mini Saas project. built with next and motion",
     },
     {
       title: "Eclypse",
       image: "/projects/Eclypse.png",
       category: "saas",
       link: "https://eclypse-sigma.vercel.app/",
+      github: "https://github.com/Bhaveshanjana/Web-Assignment03",
       description: "Landing Page from an assignment",
     },
   ];
@@ -91,8 +93,8 @@ const Project = () => {
 
   return (
     <div className="mx-5">
-      <h1 className="dark:text-gray-300 mt-9 mb-1.5 text-sm md:text-[16px] bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2 border-gray-600 dark:border-gray-400">
-        <span className="ml-2">Projects</span>
+      <h1 className="dark:text-gray-200 mt-9 mb-1.5 text-sm md:text-[16px] bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2 border-gray-600 dark:border-gray-400">
+        <span className={`ml-2 ${sans}`}>Projects</span>
       </h1>
       {/* Main Project card */}
       <div className="grid md:grid-cols-2 gap-2 ">
@@ -101,8 +103,8 @@ const Project = () => {
         ))}
       </div>
       {/* Saas projects heading */}
-      <h3 className="dark:text-gray-300 text-sm md:text-[16px] mt-5 mb-2 bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2">
-        <span className="ml-2">Some Saas Projects</span>
+      <h3 className="dark:text-gray-200 text-sm md:text-[16px] mt-5 mb-2 bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2">
+        <span className={`ml-2 ${sans}`}>Some Saas Projects</span>
       </h3>
       {/* Saas projects */}
       <div className="grid md:grid-cols-2 gap-2">
@@ -115,10 +117,10 @@ const Project = () => {
               <span className="absolute top-0 left-0 w-2 h-2 border-t border-l border-gray-600 dark:border-gray-100  opacity-0 group-hover:opacity-100 transition duration-500"></span>
               <span className="absolute top-0 right-0 w-2 h-2 border-t border-r border-gray-600 dark:border-gray-100  opacity-0 group-hover:opacity-100 transition duration-500"></span>
 
-              {/* <!-- Bottom-left corner --> */}
+              {/* Bottom-left corner */}
               <span className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-gray-600 dark:border-gray-100  opacity-0 group-hover:opacity-100 transition duration-500"></span>
 
-              {/* <!-- Bottom-right corner --> */}
+              {/* Bottom-right corner */}
               <span className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-gray-600 dark:border-gray-100  opacity-0 group-hover:opacity-100 transition duration-500"></span>
             </div>
             <div className="relative h-[200px]">
@@ -135,7 +137,7 @@ const Project = () => {
             <div>
               {/* Project title & Link's */}
               <div className="flex justify-between items-center mb-1 mx-2.5">
-                <h3 className="dark:text-gray-100 text-gray-700 text-sm">
+                <h3 className={`dark:text-gray-100 text-gray-700 text-sm ${urban}`}>
                   {sas.title}
                 </h3>
                 <div className="flex gap-2">
