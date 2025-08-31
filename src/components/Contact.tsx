@@ -80,7 +80,7 @@ const Contact = () => {
         />
         <button
           type="submit"
-          className=" w-full mx-auto text-black dark:text-gray-500 rounded-md mt-2  md:text-lg font-light cursor-pointer bg-[#2b2b2d0a] dark:bg-[#27272a26] p-1 hover:bg-gray-200 hover:text-gray-700 transition-all duration-200 disabled:cursor-no-drop"
+          className=" w-full mx-auto text-black dark:text-gray-500 dark:hover:text-white/80 rounded-md mt-2  md:text-lg font-light cursor-pointer bg-[#2b2b2d0a] dark:bg-[#27272a26] p-1 hover:bg-gray-200 hover:text-gray-700 transition-all duration-300 disabled:cursor-no-drop"
         >
           {isEmailSending ? "Sending message..." : "Send message"}
         </button>

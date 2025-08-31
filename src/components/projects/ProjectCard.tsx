@@ -15,15 +15,12 @@ type projectProps = {
 };
 const ProjectCard = ({ project }: projectProps) => {
   return (
-    <div className=" dark:hover:bg-[#131314] bg-[#2b2b2d0a] border dark:border-dashed dark:hover:border-[#525256] dark:border-[#27272a] border-gray-300 hover:border-gray-400 rounded-xs hover:shadow-xl transition duration-500  overflow-hidden shadow-md relative group">
+    <div className=" dark:hover:bg-[#131314] bg-[#2b2b2d0a] border dark:border-dashed dark:hover:border-[#525256] dark:border-[#27272a] border-gray-300 hover:border-gray-400 rounded-xs hover:shadow-xl transition duration-500  overflow-hidden shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.04),0_24px_68px_rgba(47,48,55,0.05),0_2px_3px_rgba(0,0,0,0.04)] relative group">
+      {/* Corner effect */}
       <div>
         <span className="absolute top-0 left-0 w-2 h-2 border-t border-l border-gray-600 dark:border-gray-100 opacity-0 group-hover:opacity-100 transition duration-300"></span>
         <span className="absolute top-0 right-0 w-2 h-2 border-t border-r border-gray-600 dark:border-gray-100 opacity-0 group-hover:opacity-100 transition duration-300"></span>
-
-        {/* Bottom-left corner */}
         <span className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-gray-600 dark:border-gray-100 opacity-0 group-hover:opacity-100 transition duration-300"></span>
-
-        {/* Bottom-right corner */}
         <span className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-gray-600 dark:border-gray-100 opacity-0 group-hover:opacity-100 transition duration-300"></span>
       </div>
 
@@ -42,7 +39,9 @@ const ProjectCard = ({ project }: projectProps) => {
       {/* Project title & Link's */}
       <div className="flex flex-col w-full">
         <div className="flex justify-between items-center mb-1 mx-2.5">
-          <h3 className={`dark:text-gray-100 text-gray-700 text-sm tracking-wider  ${urban}`}>
+          <h3
+            className={`dark:text-gray-100 text-black text-sm tracking-wider  ${urban}`}
+          >
             {project.title}
           </h3>
           <div className="flex gap-2">
@@ -63,7 +62,7 @@ const ProjectCard = ({ project }: projectProps) => {
           </div>
         </div>
         {/* Description */}
-        <div className=" gap-2 mb-1 mx-2.5">
+        <div className="mb-1 mx-2.5">
           <div className="dark:bg-transparent text-xs lg:text-[11px]">
             <span className={`${bricolage_grotesque} dark:text-gray-500`}>
               {project.description}

@@ -13,7 +13,7 @@ const Navbar = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   return (
     <nav className="w-full py-6 flex justify-center fixed top-0 z-50 ">
-      <div className="rounded-full w-[250px] md:w-[500px] px-2 bg-white/30 backdrop-blur-sm border border-gray-300 dark:border-gray-700 flex items-center justify-center dark:shadow-none dark:bg-gray-900/50 ">
+      <div className="rounded-full w-[250px] md:w-[500px] px-2 bg-white/30 backdrop-blur-sm border border-gray-300 dark:border-gray-700 flex items-center justify-center dark:shadow-none dark:bg-gray-900/50 relative z-50">
         <div className="flex justify-center px-2 items-center  gap-8  transition-all">
           <a
             href="https://drive.google.com/file/d/1RO7ETBM8YmkltD1TACJlgcqMngvlwVJY/view?usp=sharing"
@@ -65,6 +65,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      <div className="min-w-full bg-black -mt-12 absolute h-28 blur-lg hidden dark:block"></div>
     </nav>
   );
 };

@@ -28,7 +28,7 @@ const TechStack = () => {
   ];
   return (
     <>
-      <h1 className="dark:text-gray-200 mb-2.5 text-sm md:text-[16px] mx-5 bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2 border-gray-600 dark:border-gray-400 ">
+      <h1 className="dark:text-gray-200 text-black mb-2.5 text-sm md:text-[16px] mx-5 bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2 border-gray-600 dark:border-gray-400 ">
         <span className={`ml-2 ${sans}`}>Tech Stack</span>
       </h1>
       <div className="flex flex-wrap gap-2 mx-5">
@@ -43,7 +43,9 @@ const TechStack = () => {
               height={18}
               width={18}
             />
-            <span className={`text-gray-300 ${bricolage_grotesque}`}>{content.name}</span>
+            <span className={`dark:text-gray-300 ${bricolage_grotesque}`}>
+              {content.name}
+            </span>
           </div>
         ))}
       </div>
