@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 64 64">
+  <!-- Black background -->
+  <rect width="64" height="64" rx="8" fill="black"/>
+  
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central"
+        font-family="Arial, sans-serif" font-size="55" font-weight="semi-bold" fill="white">
+    B
+  </text>
+</svg>
