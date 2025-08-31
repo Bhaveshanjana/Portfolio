@@ -5,16 +5,44 @@ import Navbar from "@/components/Navbar";
 import { ToastContainer } from "react-toastify";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { siteConfig } from "@/data/siteconfig";
+import Img from "./image.png";
 
 export const metadata: Metadata = {
-  title: "Bhavesh",
-  description:
-    "Bhavesh Anjana is a Full Stack Developer specializing in building impactful web applications from scratch. Explore his portfolio to see my projects and skills.",
-  keywords:
-    "Bhavesh Anjana, Full Stack Developer, Web Developer, Portfolio, JavaScript, TypeScript, React, Next.js, software engineer",
-  authors: [{ name: "Bhavesh Anjana" }],
   icons: {
-    icon: "/b.ico",
+    icon: "/icon.svg",
+  },
+  keywords: siteConfig.keywords,
+  title: { default: siteConfig.name, template: `%s | ${siteConfig.name}` },
+  authors: [{ name: siteConfig.authors }],
+  openGraph: {
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: Img.src,
+        width: Img.width,
+        height: Img.height,
+        alt: siteConfig.name,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    site: siteConfig.twitterHandle,
+    images: [
+      {
+        url: Img.src,
+        width: Img.width,
+        height: Img.height,
+        alt: siteConfig.name,
+      },
+    ],
   },
 };
 
@@ -44,7 +72,7 @@ export default function RootLayout({
         />
       </head>
       <DarkModeProvider>
-        <body className={`bg-white/60 dark:bg-black/95`}>
+        <body className={`bg-white/60 dark:bg-black`}>
           <ToastContainer position="bottom-right" />
           <Navbar />
           {children}
