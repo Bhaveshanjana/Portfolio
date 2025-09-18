@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     icon: "/icon.svg",
   },
   keywords: siteConfig.keywords,
-  title: { default: siteConfig.name, template: `%s | ${siteConfig.name}` },
+  title: { default: siteConfig.authors, template: `%s | ${siteConfig.authors}` },
   authors: [{ name: siteConfig.authors }],
   openGraph: {
     title: siteConfig.name,
