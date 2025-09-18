@@ -13,7 +13,7 @@ const Hero = () => {
             duration={1000}
           />
           BCA student & passionate full-stack developer with a strong foundation
-          in frontend and backend technologies. I focus on building fast, clean,
+          in frontend. I focus on building fast, clean,
           and user-friendly digital experiences that solve real-world problems.
         </h2>
       </div>

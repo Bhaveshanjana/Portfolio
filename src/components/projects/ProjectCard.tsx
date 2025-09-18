@@ -64,7 +64,7 @@ const ProjectCard = ({ project }: projectProps) => {
         {/* Description */}
         <div className="mb-1 mx-2.5">
           <div className="dark:bg-transparent text-xs lg:text-[11px]">
-            <span className={`${bricolage_grotesque} dark:text-gray-500`}>
+            <span className={`${bricolage_grotesque} dark:text-gray-500 dark:group-hover:text-gray-400`}>
               {project.description}
             </span>
           </div>

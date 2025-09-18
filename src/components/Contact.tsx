@@ -62,7 +62,7 @@ const Contact = () => {
             setEmail(e.target.value);
           }}
           placeholder="example@gmail.com"
-          className="my-1 w-full mx-auto rounded-sm p-1 dark:border-[#27272a] border-gray-300 bg-transparent border shadow-sm placeholder:text-gray-600 placeholder:text-[15px]"
+          className="my-1 w-full mx-auto rounded-sm p-1 dark:border-[#27272a] border-gray-300 bg-transparent border shadow-sm placeholder:text-gray-600 placeholder:text-[12px]"
         />
         <h3 className="mt-1 dark:text-gray-400 text-sm md:text-[16px]">
           Message
@@ -76,7 +76,7 @@ const Contact = () => {
             setMessage(e.target.value);
           }}
           placeholder="Enter your message"
-          className="w-full mx-auto my-1 dark:border-[#27272a] border-gray-300 bg-transparent border shadow-sm p-1 rounded-sm placeholder:text-gray-600 placeholder:text-[14px]"
+          className="w-full mx-auto my-1 dark:border-[#27272a] border-gray-300 bg-transparent border shadow-sm p-1 rounded-sm placeholder:text-gray-600 placeholder:text-[12px]"
         />
         <button
           type="submit"

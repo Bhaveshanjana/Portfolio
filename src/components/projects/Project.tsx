@@ -169,7 +169,7 @@ const Project = () => {
               {/* Description */}
               <div className=" gap-2 mb-1 mx-2.5">
                 <div className="dark:bg-transparent text-xs lg:text-[11px]">
-                  <span className={`${bricolage_grotesque} dark:text-gray-500`}>
+                  <span className={`${bricolage_grotesque} dark:text-gray-500 dark:group-hover:text-gray-400`}>
                     {sas.description}
                   </span>
                 </div>
