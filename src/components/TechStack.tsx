@@ -9,18 +9,16 @@ type data = {
 
 const TechStack = () => {
   const techStack: data[] = [
-    { name: "NextJs", image: "/techstack/nextjs.png" },
-    { name: "ReactJs", image: "/techstack/react.png" },
+    { name: "Next.js", image: "/techstack/nextjs.png" },
+    { name: "React.js", image: "/techstack/react.png" },
     { name: "TypeScript", image: "/techstack/typescript.webp" },
     { name: "JavaScript", image: "/techstack/javascript.png" },
-    { name: "CSS", image: "/techstack/css.png" },
-    { name: "HTML", image: "/techstack/html.png" },
     { name: "TailwindCSS", image: "/techstack/tailwind.png" },
     { name: "MongoDB", image: "/techstack/mongo.png" },
-    { name: "Expressjs", image: "/techstack/express.png" },
-    { name: "Node", image: "/techstack/node.png" },
+    { name: "Express.js", image: "/techstack/express.png" },
+    { name: "Node.js", image: "/techstack/node.png" },
     { name: "Git", image: "/techstack/git.png" },
-    { name: "Github", image: "/techstack/github.png" },
+    { name: "Gemini", image: "/techstack/gemini.png" },
     { name: "Prisma", image: "/techstack/prisma.png" },
     { name: "PostgreSQL", image: "/techstack/postgresql.png" },
     { name: "Motion", image: "/techstack/motion.png" },
