@@ -65,7 +65,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="min-w-full bg-black -mt-12 absolute h-28 blur-lg hidden dark:block"></div>
+      <div className="min-w-full dark:bg-black bg-white -mt-12 absolute h-28 blur-lg dark:block"></div>
     </nav>
   );
 };
