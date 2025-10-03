@@ -28,10 +28,6 @@ const page = () => {
           <Hero />
         </SectionEffect>
 
-        <SectionEffect delay={0.2}>
-          <TechStack />
-        </SectionEffect>
-        
         <motion.div
           initial="hidden"
           animate="visible"
@@ -40,6 +36,10 @@ const page = () => {
         >
           <Projects />
         </motion.div>
+        
+        <SectionEffect delay={0.2}>
+          <TechStack />
+        </SectionEffect>
 
         <SectionEffect delay={0.2}>
           <Contact />
