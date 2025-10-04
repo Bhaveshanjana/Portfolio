@@ -13,38 +13,45 @@ const TechStack = () => {
     { name: "React.js", image: "/techstack/react.png" },
     { name: "TypeScript", image: "/techstack/typescript.webp" },
     { name: "JavaScript", image: "/techstack/javascript.png" },
-    { name: "TailwindCSS", image: "/techstack/tailwind.png" },
     { name: "MongoDB", image: "/techstack/mongo.png" },
     { name: "Express.js", image: "/techstack/express.png" },
+    { name: "TailwindCSS", image: "/techstack/tailwind.png" },
     { name: "Node.js", image: "/techstack/node.png" },
-    { name: "Git", image: "/techstack/git.png" },
-    { name: "Gemini", image: "/techstack/gemini.png" },
-    { name: "Prisma", image: "/techstack/prisma.png" },
     { name: "PostgreSQL", image: "/techstack/postgresql.png" },
     { name: "Motion", image: "/techstack/motion.png" },
-    { name: "Shadcn", image: "/techstack/shadcn.png" },
   ];
   return (
     <>
-      <h1 className="dark:text-gray-200 text-black mb-2.5 text-sm md:text-[16px] mx-5 bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2 border-gray-600 dark:border-gray-400 ">
+      <h1 className="dark:text-gray-300 text-black mb-2.5 text-[14px] md:text-[15px] mx-5 bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2 border-gray-600 dark:border-gray-400 ">
         <span className={`ml-2 ${sans}`}>Tech Stack</span>
       </h1>
       <div className="flex flex-wrap gap-2 mx-5">
         {techStack.map((content) => (
-          <div
+          <button
             key={content.name}
-            className="flex items-center gap-2 rounded-lg bg-transparent border border-gray-300 px-2 md:px-4 py-0.5 text-[11px] md:text-sm  text-black dark:text-gray-400 dark:bg-gray-900 dark:border-gray-700 cursor-pointer"
+            className="flex relative group items-center gap-2 rounded-lg bg-transparent px-2.5 md:px-3 py-1 text-neutral-800 dark:text-neutral-300 cursor-pointer "
           >
+            <div
+              className="absolute inset-0 rounded-xl border-t-2 border-b-1 
+               border-t-neutral-200 border-b-neutral-300 
+               dark:border-t-neutral-700/80 dark:border-b-neutral-900 
+               group-hover:border-b-0 dark:group-hover:border-b-0
+               group-hover:shadow-[inset_0_2px_6px_rgba(0,0,0,0.1)] 
+               dark:group-hover:shadow-[inset_0_2px_8px_rgba(0,0,0,0.5)]"
+            ></div>
             <Image
               src={content.image}
               alt={content.name}
-              height={18}
-              width={18}
+              height={500}
+              width={500}
+              className="size-4 relative group-hover:translate-y-px"
             />
-            <span className={`dark:text-gray-300 ${bricolage_grotesque}`}>
+            <span
+              className={`relative ${bricolage_grotesque} mt-0.5 text-[10px] md:text-[11px]  group-hover:translate-y-px`}
+            >
               {content.name}
             </span>
-          </div>
+          </button>
         ))}
       </div>
     </>
