@@ -100,7 +100,7 @@ const Project = () => {
 
   return (
     <div className="mx-5">
-      <h1 className="dark:text-gray-200 mt-9 mb-1.5 text-sm md:text-[16px] bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2 border-gray-600 dark:border-gray-400">
+      <h1 className="dark:text-gray-300 mt-9 mb-1.5 text-[14px] md:text-[15px] bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2 border-gray-600 dark:border-gray-400">
         <span className={`ml-2 ${sans}`}>Projects</span>
       </h1>
       {/* Main Project card */}
@@ -109,7 +109,7 @@ const Project = () => {
           <ProjectCard key={project.title} project={project} />
         ))}
       </div>
-      <h3 className="dark:text-gray-200 text-sm md:text-[16px] mt-5 mb-2 bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2">
+      <h3 className="dark:text-gray-300 text-[14px] md:text-[15px] mt-5 mb-2 bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2">
         <span className={`ml-2 ${sans}`}>Some landing page</span>
       </h3>
       {/* Landing page's */}
@@ -168,7 +168,7 @@ const Project = () => {
               </div>
               {/* Description */}
               <div className=" gap-2 mb-1 mx-2.5">
-                <div className="dark:bg-transparent text-xs lg:text-[11px]">
+                <div className="dark:bg-transparent text-[11px] lg:text-[11px]">
                   <span className={`${bricolage_grotesque} dark:text-gray-500 dark:group-hover:text-gray-400`}>
                     {sas.description}
                   </span>
