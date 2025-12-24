@@ -12,9 +12,7 @@ const Hero = () => {
             className="text-[15px] md:text-lg dark:text-gray-200"
             duration={1000}
           />
-          BCA student & passionate full-stack developer with a strong foundation
-          in frontend. I focus on building fast, clean,
-          and user-friendly digital experiences that solve real-world problems.
+          MERN stack developer, I love building full-stack applications, but I really focus on making the UI look great and feel smooth for the user :)
         </h2>
       </div>
     </div>
