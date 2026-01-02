@@ -92,6 +92,14 @@ const Project = () => {
       github: "https://github.com/Bhaveshanjana/Web-Assignment03",
       description: "Landing page from an assignment.",
     },
+    {
+      title: "TaskFlow",
+      image: "/projects/TaskFlow.png",
+      category: "saas",
+      link: "https://taskflow-dashboard-template.vercel.app/",
+      github: "https://github.com/Bhaveshanjana/Taskflow-template",
+      description: "A modern productivity dashboard template optimized for workflow tracking and team collaboration.",
+    },
   ];
 
   const mainProjects = data.filter((p) => p.category === "main");
@@ -100,15 +108,6 @@ const Project = () => {
 
   return (
     <div className="mx-5">
-      <h1 className="dark:text-gray-300 mt-9 mb-1.5 text-[14px] md:text-[15px] bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2 border-gray-600 dark:border-gray-400">
-        <span className={`ml-2 ${sans}`}>Projects</span>
-      </h1>
-      {/* Main Project card */}
-      <div className="grid md:grid-cols-2 gap-2 ">
-        {mainProjects.map((project) => (
-          <ProjectCard key={project.title} project={project} />
-        ))}
-      </div>
       <h3 className="dark:text-gray-300 text-[14px] md:text-[15px] mt-5 mb-2 bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2">
         <span className={`ml-2 ${sans}`}>Some landing page</span>
       </h3>
@@ -176,6 +175,15 @@ const Project = () => {
               </div>
             </div>
           </div>
+        ))}
+      </div>
+      <h1 className="dark:text-gray-300 mt-9 mb-1.5 text-[14px] md:text-[15px] bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2 border-gray-600 dark:border-gray-400">
+        <span className={`ml-2 ${sans}`}>Projects</span>
+      </h1>
+      {/* Main Project card */}
+      <div className="grid md:grid-cols-2 gap-2 ">
+        {mainProjects.map((project) => (
+          <ProjectCard key={project.title} project={project} />
         ))}
       </div>
     </div>
