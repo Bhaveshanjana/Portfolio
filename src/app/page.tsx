@@ -1,5 +1,6 @@
 "use client";
 import Contact from "@/components/Contact";
+import Experience from "@/components/Experience";
 import Hero from "@/components/Hero";
 import Projects from "@/components/projects/Project";
 import TechStack from "@/components/TechStack";
@@ -28,6 +29,10 @@ const page = () => {
           <Hero />
         </SectionEffect>
 
+        <SectionEffect delay={0.15}>
+          <Experience />
+        </SectionEffect>
+
         <motion.div
           initial="hidden"
           animate="visible"
@@ -36,7 +41,7 @@ const page = () => {
         >
           <Projects />
         </motion.div>
-        
+
         <SectionEffect delay={0.2}>
           <TechStack />
         </SectionEffect>
