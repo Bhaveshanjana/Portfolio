@@ -4,10 +4,10 @@ export const siteConfig = {
   authors: "Bhavesh",
   name: "Portfolio",
   description:
-    "Bhavesh Anjana is a Full Stack Developer specializing in building impactful web applications from scratch. Explore his portfolio to see my projects and skills.",
+    "MERN Stack Developer crafting visually stunning web applications. Focusing on polished ui design, animations, and high-performance user interactions.",
   url: baseUrl,
   twitterHandle: "@Bhavesh2034",
   keywords: [
-    "Bhavesh Anjana, Full Stack Developer, Web Developer, Portfolio, JavaScript, TypeScript, React, Next.js, software engineer",
+    "Bhavesh Anjana, MERN Stack Developer, Web Developer, Portfolio, JavaScript, TypeScript, React, Next.js, Software Engineer, Framer Motion,",
   ],
 };
