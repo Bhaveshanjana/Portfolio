@@ -5,9 +5,13 @@ const Experience = () => {
     const experiences = [
         {
             role: "Frontend Developer",
+            company: "at Capsai",
+            duration: "Jan 2026 - Current",
+        },
+        {
+            role: "Frontend Developer",
             company: "at Yakshar",
             duration: "Oct 2025 - Jan 2026",
-            description: "i work as an frontend developer",
         },
     ];
 
@@ -27,7 +31,7 @@ const Experience = () => {
                             <p className="text-sm text-gray-500 dark:text-gray-400">{exp.company}</p>
                         </div>
 
-                        <div className={`text-xs text-gray-500 dark:text-gray-400 ${manrope} mt-1 border-b border-dashed`}>
+                        <div className={`text-xs text-gray-500 dark:text-gray-400 dark:border-gray-600 border-gray-400 ${manrope} mt-1 border-b border-dashed`}>
                             {exp.duration}
                         </div>
                     </div>
