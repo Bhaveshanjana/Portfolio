@@ -6,12 +6,12 @@ const Experience = () => {
         {
             role: "Frontend Developer",
             company: "at Capsai",
-            duration: "Jan 2026 - Current",
+            duration: "Jan 2026 - Feb 2026",
         },
         {
             role: "Frontend Developer",
             company: "at Yakshar",
-            duration: "Oct 2025 - Jan 2026",
+            duration: "Oct 2025 - Dec 2025",
         },
     ];
 
