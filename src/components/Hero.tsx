@@ -5,7 +5,7 @@ import { manrope } from "@/utils/fonts";
 const Hero = () => {
   return (
     <div>
-      <div className="mt-36 mx-5">
+      <div className="mt-28">
         <h2 className={`dark:text-gray-400 text-sm md:text-[16px] ${manrope}`}>
           <HyperText
             text="Hi,i am Bhavesh"

@@ -23,33 +23,33 @@ const getBlurVariants = (delay: number): Variants => ({
 const page = () => {
   return (
     <div>
+    <main className="max-w-[680px] mx-auto px-5 space-y-12 pb-20">
       {/* Hero Section */}
-      <div className="max-w-[680px] mx-auto space-y-10">
-        <SectionEffect delay={0.1}>
-          <Hero />
-        </SectionEffect>
+      <SectionEffect delay={0.1}>
+        <Hero />
+      </SectionEffect>
 
-        <SectionEffect delay={0.15}>
-          <Experience />
-        </SectionEffect>
+      <SectionEffect delay={0.15}>
+        <Experience />
+      </SectionEffect>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={getBlurVariants(0.3)}
-        >
-          <Projects />
-        </motion.div>
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={getBlurVariants(0.3)}
+      >
+        <Projects />
+      </motion.div>
 
-        <SectionEffect delay={0.2}>
-          <TechStack />
-        </SectionEffect>
+      <SectionEffect delay={0.2}>
+        <TechStack />
+      </SectionEffect>
 
-        <SectionEffect delay={0.2}>
-          <Contact />
-        </SectionEffect>
-      </div>
+      <SectionEffect delay={0.2}>
+        <Contact />
+      </SectionEffect>
+    </main>
     </div>
   );
 };

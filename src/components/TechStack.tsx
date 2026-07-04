@@ -1,6 +1,7 @@
-import { bricolage_grotesque, sans } from "@/utils/fonts";
+import { bricolage_grotesque } from "@/utils/fonts";
 import Image from "next/image";
 import React from "react";
+import { SectionHeader } from "./ui/SectionHeader";
 
 type data = {
   name: string;
@@ -22,10 +23,8 @@ const TechStack = () => {
   ];
   return (
     <>
-      <h1 className="dark:text-gray-300 text-black mb-2.5 text-[14px] md:text-[15px] mx-5 bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2 border-gray-600 dark:border-gray-400 ">
-        <span className={`ml-2 ${sans}`}>Tech Stack</span>
-      </h1>
-      <div className="flex flex-wrap gap-2 mx-5">
+      <SectionHeader title="Tech Stack" />
+      <div className="flex flex-wrap gap-2">
         {techStack.map((content) => (
           <button
             key={content.name}
