@@ -4,6 +4,7 @@ import Experience from "@/components/Experience";
 import Hero from "@/components/Hero";
 import Projects from "@/components/projects/Project";
 import TechStack from "@/components/TechStack";
+import { GitHubGraph } from "@/components/github/GitHubGraph";
 import React from "react";
 import SectionEffect from "@/components/utils/textEffect";
 import { motion, Variants } from "framer-motion";
@@ -27,6 +28,10 @@ const page = () => {
       {/* Hero Section */}
       <SectionEffect delay={0.1}>
         <Hero />
+      </SectionEffect>
+
+      <SectionEffect delay={0.12}>
+        <GitHubGraph />
       </SectionEffect>
 
       <SectionEffect delay={0.15}>
