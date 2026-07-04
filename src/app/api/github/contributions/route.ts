@@ -8,10 +8,6 @@ export async function GET() {
     return NextResponse.json({ error: "Missing GitHub credentials" }, { status: 500 });
   }
 
-  const now = new Date();
-  const currentYearStart = `${now.getFullYear()}-01-01T00:00:00Z`;
-  const currentYearNow = now.toISOString();
-
   const query = `
     query ($username: String!) {
       user(login: $username) {
@@ -74,7 +70,8 @@ export async function GET() {
       totalContributions: lifetimeContributions,
       weeks: user.current.contributionCalendar.weeks
     });
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

@@ -59,8 +59,22 @@ export const GitHubGraph = () => {
     <div className="py-2 overflow-hidden">
       <div className="flex flex-col gap-2">
         {loading ? (
-          <div className="h-[120px] flex items-center justify-start text-sm text-zinc-500">
-            <span className="animate-pulse font-mono text-xs">Loading contributions...</span>
+          <div className="h-[120px] w-full flex items-center justify-center">
+            <svg className="w-6 h-6 text-zinc-500 animate-[spin_1s_steps(12)_infinite]" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              {[...Array(12)].map((_, i) => (
+                <rect
+                  key={i}
+                  x="11"
+                  y="2"
+                  width="2"
+                  height="5"
+                  rx="1"
+                  fill="currentColor"
+                  opacity={0.2 + (i / 12) * 0.8}
+                  transform={`rotate(${i * 30} 12 12)`}
+                />
+              ))}
+            </svg>
           </div>
         ) : data ? (
           <>
@@ -111,7 +125,7 @@ export const GitHubGraph = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.015, duration: 0.2 }}
                       >
-                        {week.contributionDays.map((day, j) => {
+                        {week.contributionDays.map((day) => {
                           const cellDate = new Date(day.date);
                           const isFuture = cellDate > today;
 
