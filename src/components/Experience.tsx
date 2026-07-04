@@ -1,5 +1,6 @@
-import { manrope, sans } from "@/utils/fonts";
+import { manrope } from "@/utils/fonts";
 import React from "react";
+import { SectionHeader } from "./ui/SectionHeader";
 
 const Experience = () => {
     const experiences = [
@@ -17,11 +18,9 @@ const Experience = () => {
 
     return (
         <div className="-my-1">
-            <h1 className="dark:text-gray-300 text-black mb-4 text-[14px] md:text-[15px] mx-5 bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2 border-gray-600 dark:border-gray-400 ">
-                <span className={`ml-2 ${sans}`}>Experience</span>
-            </h1>
+            <SectionHeader title="Experience" />
 
-            <div className="mx-5 flex flex-col gap-4">
+            <div className="flex flex-col gap-4">
                 {experiences.map((exp, index) => (
                     <div key={index} className="flex  justify-between items-start sm:items-center group">
                         <div className="flex flex-col">

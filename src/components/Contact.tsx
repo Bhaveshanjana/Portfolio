@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
-import { sans } from "@/utils/fonts";
+import { SectionHeader } from "./ui/SectionHeader";
 
 const Contact = () => {
   const [email, setEmail] = useState<string>("");
@@ -45,10 +45,8 @@ const Contact = () => {
     }
   };
   return (
-    <div className=" text-gray-700 space-y-5 mt-9 mb-1 mx-6">
-      <h1 className="text-[14px] md:text-[15px] dark:text-gray-200 bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2 border-gray-600 dark:border-gray-400">
-        <span className={`ml-2 ${sans}`}>Reach me out via email</span>
-      </h1>
+    <div className="text-gray-700 space-y-5 mt-9 mb-1">
+      <SectionHeader title="Reach me out via email" />
       <form onSubmit={sendEmailMessage}>
         <h3 className="dark:text-gray-400 text-sm md:text-[16px] -mt-2">
           Email

@@ -5,7 +5,8 @@ import ProjectCard from "./ProjectCard";
 import Image from "next/image";
 import { IoLogoGithub } from "react-icons/io5";
 import { PiLink } from "react-icons/pi";
-import { bricolage_grotesque, sans, urban } from "@/utils/fonts";
+import { bricolage_grotesque, urban } from "@/utils/fonts";
+import { SectionHeader } from "../ui/SectionHeader";
 
 type project = {
   title: string;
@@ -107,10 +108,8 @@ const Project = () => {
   const saasProjects = data.filter((p) => p.category === "saas");
 
   return (
-    <div className="mx-5">
-      <h3 className="dark:text-gray-300 text-[14px] md:text-[15px] mt-5 mb-2 bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2">
-        <span className={`ml-2 ${sans}`}>Some landing page</span>
-      </h3>
+    <div>
+      <SectionHeader title="Some landing page" />
       {/* Landing page's */}
       <div className="grid md:grid-cols-2 gap-2">
         {saasProjects.map((sas, index) => (
@@ -177,9 +176,11 @@ const Project = () => {
           </div>
         ))}
       </div>
-      <h1 className="dark:text-gray-300 mt-9 mb-1.5 text-[14px] md:text-[15px] bg-gradient-to-r from-[#d3d7da53] dark:bg-gradient-to-r dark:from-[#0C1C21] border-l-2 border-gray-600 dark:border-gray-400">
-        <span className={`ml-2 ${sans}`}>Projects</span>
-      </h1>
+      
+      <div className="mt-9">
+        <SectionHeader title="Projects" />
+      </div>
+      
       {/* Main Project card */}
       <div className="grid md:grid-cols-2 gap-2 ">
         {mainProjects.map((project) => (
