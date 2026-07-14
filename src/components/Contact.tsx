@@ -45,10 +45,10 @@ const Contact = () => {
     }
   };
   return (
-    <div className="text-gray-700 space-y-5 mt-9 mb-1">
+    <div className="space-y-5 mt-9 mb-1">
       <SectionHeader title="Reach me out via email" />
       <form onSubmit={sendEmailMessage}>
-        <h3 className="dark:text-gray-400 text-sm md:text-[16px] -mt-2">
+        <h3 className="text-gray-400 text-sm md:text-[16px] -mt-2">
           Email
         </h3>
         <input
@@ -60,9 +60,9 @@ const Contact = () => {
             setEmail(e.target.value);
           }}
           placeholder="example@gmail.com"
-          className="my-1 w-full mx-auto rounded-sm p-1 dark:border-[#27272a] border-gray-300 bg-transparent border shadow-sm placeholder:text-gray-600 placeholder:text-[12px]"
+          className="my-1 w-full mx-auto rounded-sm p-1 border-[#27272a] bg-transparent border shadow-sm placeholder:text-gray-600 placeholder:text-[12px]"
         />
-        <h3 className="mt-1 dark:text-gray-400 text-sm md:text-[16px]">
+        <h3 className="mt-1 text-gray-400 text-sm md:text-[16px]">
           Message
         </h3>
         <input
@@ -74,17 +74,17 @@ const Contact = () => {
             setMessage(e.target.value);
           }}
           placeholder="Enter your message"
-          className="w-full mx-auto my-1 dark:border-[#27272a] border-gray-300 bg-transparent border shadow-sm p-1 rounded-sm placeholder:text-gray-600 placeholder:text-[12px]"
+          className="w-full mx-auto my-1 border-[#27272a] bg-transparent border shadow-sm p-1 rounded-sm placeholder:text-gray-600 placeholder:text-[12px]"
         />
         <button
           type="submit"
-          className=" w-full mx-auto text-black dark:text-gray-500 dark:hover:text-white/80 rounded-md mt-2  md:text-lg font-light cursor-pointer bg-[#2b2b2d0a] dark:bg-[#27272a26] p-1 hover:bg-gray-200 hover:text-gray-700 transition-all duration-300 disabled:cursor-no-drop"
+          className=" w-full mx-auto text-gray-500 hover:text-white/80 rounded-md mt-2  md:text-lg font-light cursor-pointer bg-[#27272a26] p-1 transition-all duration-300 disabled:cursor-no-drop"
         >
           {isEmailSending ? "Sending message..." : "Send message"}
         </button>
       </form>
       {/* Footer */}
-      <div className="border-t dark:border-[#27272a] -mt-2.5 text-center text-[11px] md:text-xs font-mono dark:text-gray-300">
+      <div className="border-t border-[#27272a] -mt-2.5 text-center text-[11px] md:text-xs font-mono text-gray-300">
         Created by Bhavesh
       </div>
     </div>

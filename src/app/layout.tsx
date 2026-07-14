@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import DarkModeProvider from "@/context/DarkModeContext";
 import Navbar from "@/components/Navbar";
 import { ToastContainer } from "react-toastify";
 import { Analytics } from "@vercel/analytics/next";
@@ -44,6 +43,7 @@ export const metadata: Metadata = {
       },
     ],
   },
+  colorScheme: "dark",
 };
 
 export default function RootLayout({
@@ -52,34 +52,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* Script for white flash during refresh in dark mode */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                  const theme = localStorage.getItem('theme');
-                  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  if (theme === 'dark' || (!theme && prefersDark)) {
-                    document.documentElement.classList.add('dark');
-                  } else {
-                    document.documentElement.classList.remove('dark');
-                  }
-              })();
-            `,
-          }}
-        />
-      </head>
-      <DarkModeProvider>
-        <body className={`bg-white/60 dark:bg-black`}>
-          <ToastContainer position="bottom-right" />
-          <Navbar />
-          {children}
-          <SpeedInsights />
-          <Analytics />
-        </body>
-      </DarkModeProvider>
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body className="bg-black text-zinc-100">
+        <ToastContainer position="bottom-right" theme="dark" />
+        <Navbar />
+        {children}
+        <SpeedInsights />
+        <Analytics />
+      </body>
     </html>
   );
 }
