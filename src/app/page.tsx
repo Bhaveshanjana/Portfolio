@@ -1,62 +1,50 @@
-"use client";
 import Contact from "@/components/Contact";
 import Experience from "@/components/Experience";
 import Hero from "@/components/Hero";
 import Projects from "@/components/projects/Project";
 import TechStack from "@/components/TechStack";
 import { GitHubGraph } from "@/components/github/GitHubGraph";
-import React from "react";
 import SectionEffect from "@/components/utils/textEffect";
-import { motion, Variants } from "framer-motion";
+import { getGitHubContributions } from "@/lib/github";
 
-const getBlurVariants = (delay: number): Variants => ({
-  hidden: { opacity: 0, filter: "blur(15px)" },
-  visible: {
-    opacity: 1,
-    filter: "blur(0px)",
-    transition: {
-      duration: 0.5,
-      ease: "easeOut",
-      delay,
-    },
-  },
-});
-const page = () => {
+export const revalidate = 3600;
+
+export default async function Page() {
+  let githubData = null;
+
+  try {
+    githubData = await getGitHubContributions();
+  } catch (error) {
+    console.error("Failed to prefetch GitHub contributions", error);
+  }
+
   return (
     <div>
-    <main className="max-w-[680px] mx-auto px-5 space-y-12 pb-20">
-      {/* Hero Section */}
-      <SectionEffect delay={0.1}>
-        <Hero />
-      </SectionEffect>
+      <main className="max-w-[680px] mx-auto px-5 space-y-12 pb-20">
+        <SectionEffect delay={0.1}>
+          <Hero />
+        </SectionEffect>
 
-      <SectionEffect delay={0.12}>
-        <GitHubGraph />
-      </SectionEffect>
+        <SectionEffect delay={0.12}>
+          <GitHubGraph initialData={githubData} />
+        </SectionEffect>
 
-      <SectionEffect delay={0.15}>
-        <Experience />
-      </SectionEffect>
+        <SectionEffect delay={0.15}>
+          <Experience />
+        </SectionEffect>
 
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={getBlurVariants(0.3)}
-      >
-        <Projects />
-      </motion.div>
+        <SectionEffect delay={0.2}>
+          <Projects />
+        </SectionEffect>
 
-      <SectionEffect delay={0.2}>
-        <TechStack />
-      </SectionEffect>
+        <SectionEffect delay={0.2}>
+          <TechStack />
+        </SectionEffect>
 
-      <SectionEffect delay={0.2}>
-        <Contact />
-      </SectionEffect>
-    </main>
+        <SectionEffect delay={0.2}>
+          <Contact />
+        </SectionEffect>
+      </main>
     </div>
   );
-};
-
-export default page;
+}
