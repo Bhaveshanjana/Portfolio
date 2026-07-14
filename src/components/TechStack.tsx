@@ -28,15 +28,13 @@ const TechStack = () => {
         {techStack.map((content) => (
           <button
             key={content.name}
-            className="flex relative group items-center gap-2 rounded-lg bg-transparent px-2.5 md:px-3 py-1 text-neutral-800 dark:text-neutral-300 cursor-pointer "
+            className="flex relative group items-center gap-2 rounded-lg bg-transparent px-2.5 md:px-3 py-1 text-neutral-300 cursor-pointer "
           >
             <div
               className="absolute inset-0 rounded-xl border-t-2 border-b-1 
-               border-t-neutral-200 border-b-neutral-300 
-               dark:border-t-neutral-700/80 dark:border-b-neutral-900 
-               group-hover:border-b-0 dark:group-hover:border-b-0
-               group-hover:shadow-[inset_0_2px_6px_rgba(0,0,0,0.1)] 
-               dark:group-hover:shadow-[inset_0_2px_8px_rgba(0,0,0,0.5)]"
+               border-t-neutral-700/80 border-b-neutral-900 
+               group-hover:border-b-0
+               group-hover:shadow-[inset_0_2px_8px_rgba(0,0,0,0.5)]"
             ></div>
             <Image
               src={content.image}

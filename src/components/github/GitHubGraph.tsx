@@ -59,11 +59,11 @@ export const GitHubGraph = ({ initialData = null }: GitHubGraphProps) => {
   }, [initialData]);
 
   const getLevelClass = (count: number) => {
-    if (count === 0) return "bg-zinc-200 dark:bg-[#1e1e20]";
-    if (count <= 3) return "bg-zinc-300 dark:bg-zinc-700";
-    if (count <= 6) return "bg-zinc-400 dark:bg-zinc-500";
-    if (count <= 9) return "bg-zinc-500 dark:bg-zinc-300";
-    return "bg-zinc-600 dark:bg-zinc-100";
+    if (count === 0) return "bg-[#1e1e20]";
+    if (count <= 3) return "bg-zinc-700";
+    if (count <= 6) return "bg-zinc-500";
+    if (count <= 9) return "bg-zinc-300";
+    return "bg-zinc-100";
   };
 
   const today = new Date();
@@ -174,7 +174,7 @@ export const GitHubGraph = ({ initialData = null }: GitHubGraphProps) => {
             </div>
 
             <div className="px-2 -translate-y-2">
-              <span className="font-mono text-[11px] text-zinc-500 dark:text-slate-400/80">
+              <span className="font-mono text-[11px] text-slate-400/80">
                 Total {data.totalContributions} contributions
               </span>
             </div>

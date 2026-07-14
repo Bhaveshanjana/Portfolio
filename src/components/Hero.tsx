@@ -6,10 +6,10 @@ const Hero = () => {
   return (
     <div>
       <div className="mt-28">
-        <h2 className={`dark:text-gray-400 text-sm md:text-[16px] ${manrope}`}>
+        <h2 className={`text-gray-400 text-sm md:text-[16px] ${manrope}`}>
           <HyperText
             text="Hi,i am Bhavesh"
-            className="text-[15px] md:text-lg dark:text-gray-200"
+            className="text-[15px] md:text-lg text-gray-200"
             duration={1000}
           />
           MERN stack developer, I love building full-stack applications, but I really focus on making the UI look great and feel smooth for the user :)
