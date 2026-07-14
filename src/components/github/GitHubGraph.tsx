@@ -2,46 +2,61 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import type { GitHubContributions } from "@/lib/github";
 
-type ContributionDay = {
-  date: string;
-  contributionCount: number;
-  color: string;
+type GitHubGraphProps = {
+  initialData?: GitHubContributions | null;
 };
 
-type Week = {
-  contributionDays: ContributionDay[];
-};
+const monthNames = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 
-type Calendar = {
-  totalContributions: number;
-  weeks: Week[];
-};
-
-const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-export const GitHubGraph = () => {
-  const [data, setData] = useState<Calendar | null>(null);
-  const [loading, setLoading] = useState(true);
+export const GitHubGraph = ({ initialData = null }: GitHubGraphProps) => {
+  const [data, setData] = useState<GitHubContributions | null>(initialData);
+  const [loading, setLoading] = useState(!initialData);
 
   useEffect(() => {
+    if (initialData) {
+      setData(initialData);
+      setLoading(false);
+      return;
+    }
+
+    let cancelled = false;
+
     const fetchData = async () => {
       try {
         const res = await fetch("/api/github/contributions");
-        if (res.ok) {
-          const json = await res.json();
-          setData(json);
-        } else {
+        if (!res.ok) {
           console.error("Failed to fetch GitHub contributions", res.status);
+          return;
         }
+        const json = await res.json();
+        if (!cancelled) setData(json);
       } catch (error) {
         console.error("Failed to fetch GitHub contributions", error);
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     };
+
     fetchData();
-  }, []);
+    return () => {
+      cancelled = true;
+    };
+  }, [initialData]);
 
   const getLevelClass = (count: number) => {
     if (count === 0) return "bg-zinc-200 dark:bg-[#1e1e20]";
@@ -60,7 +75,11 @@ export const GitHubGraph = () => {
       <div className="flex flex-col gap-2">
         {loading ? (
           <div className="h-[120px] w-full flex items-center justify-center">
-            <svg className="w-6 h-6 text-zinc-500 animate-[spin_1s_steps(12)_infinite]" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              className="w-6 h-6 text-zinc-500 animate-[spin_1s_steps(12)_infinite]"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               {[...Array(12)].map((_, i) => (
                 <rect
                   key={i}
@@ -79,13 +98,11 @@ export const GitHubGraph = () => {
         ) : data ? (
           <>
             <div className="relative w-full max-w-full">
-              {/* Fade masks for left/right edges */}
               <div className="absolute inset-y-0 left-0 w-4 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
               <div className="absolute inset-y-0 right-0 w-4 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
 
               <div className="overflow-x-auto scrollbar-hide">
                 <div className="flex flex-col min-w-max px-2">
-                  {/* Month Labels */}
                   <div className="flex gap-[3px] mb-5 text-[11px] ml-5 text-zinc-500 font-mono">
                     {data.weeks.map((week, i) => {
                       let showMonth = false;
@@ -95,7 +112,9 @@ export const GitHubGraph = () => {
                       if (i === 0) {
                         showMonth = true;
                       } else {
-                        const prevDate = new Date(data.weeks[i - 1].contributionDays[0].date);
+                        const prevDate = new Date(
+                          data.weeks[i - 1].contributionDays[0].date
+                        );
                         if (prevDate.getMonth() !== month) {
                           showMonth = true;
                         }
@@ -104,7 +123,12 @@ export const GitHubGraph = () => {
                       const isFutureMonth = month > currentMonth;
 
                       return (
-                        <div key={`month-${i}`} className={`w-[10px] relative ${isFutureMonth ? 'opacity-30 blur-[1px]' : ''}`}>
+                        <div
+                          key={`month-${i}`}
+                          className={`w-[10px] relative ${
+                            isFutureMonth ? "opacity-30 blur-[1px]" : ""
+                          }`}
+                        >
                           {showMonth && (
                             <span className="absolute left-0 -translate-x-1/4">
                               {monthNames[month]}
@@ -115,7 +139,6 @@ export const GitHubGraph = () => {
                     })}
                   </div>
 
-                  {/* Graph Cells */}
                   <div className="flex gap-[3px]">
                     {data.weeks.map((week, i) => (
                       <motion.div
@@ -134,8 +157,12 @@ export const GitHubGraph = () => {
                               key={day.date}
                               className={`w-[10px] h-[10px] rounded-[2px] ${getLevelClass(
                                 day.contributionCount
-                              )} ${isFuture ? 'opacity-30 blur-[1px]' : ''}`}
-                              title={isFuture ? `Future date: ${day.date}` : `${day.contributionCount} contributions on ${day.date}`}
+                              )} ${isFuture ? "opacity-30 blur-[1px]" : ""}`}
+                              title={
+                                isFuture
+                                  ? `Future date: ${day.date}`
+                                  : `${day.contributionCount} contributions on ${day.date}`
+                              }
                             />
                           );
                         })}
