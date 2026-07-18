@@ -8,12 +8,6 @@ export type ExperienceItem = {
 export const experiences: ExperienceItem[] = [
   {
     role: "",
-    company: "Started",
-    duration: "Aug 2024",
-    description: "Started learning HTML.",
-  },
-  {
-    role: "",
     company: "Yakshar",
     duration: "Oct 2025 - Dec 2025",
     description: "Collaborated with design and backend teams.",
