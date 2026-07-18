@@ -33,7 +33,7 @@ export default async function Page() {
           <Experience />
         </SectionEffect>
 
-        <SectionEffect delay={0.2}>
+        <SectionEffect delay={0.25}>
           <Projects />
         </SectionEffect>
 
