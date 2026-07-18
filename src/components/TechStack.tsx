@@ -16,9 +16,13 @@ const TechStack = () => {
     { name: "JavaScript", image: "/techstack/javascript.png" },
     { name: "MongoDB", image: "/techstack/mongo.png" },
     { name: "Express.js", image: "/techstack/express.png" },
+    { name: "Nest.js", image: "/techstack/nestjs.png" },
     { name: "TailwindCSS", image: "/techstack/tailwind.png" },
     { name: "Node.js", image: "/techstack/node.png" },
     { name: "PostgreSQL", image: "/techstack/postgresql.png" },
+    { name: "Supabase", image: "/techstack/supabase.jpg" },
+    { name: "n8n", image: "/techstack/n8n.jpg" },
+    { name: "Nakama", image: "/techstack/nakama.png" },
     { name: "Motion", image: "/techstack/motion.png" },
   ];
   return (
