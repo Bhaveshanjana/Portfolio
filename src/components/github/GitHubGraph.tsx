@@ -8,6 +8,14 @@ type GitHubGraphProps = {
   initialData?: GitHubContributions | null;
 };
 
+type HoveredDay = {
+  date: string;
+  count: number;
+  x: number;
+  y: number;
+  isFuture: boolean;
+};
+
 const monthNames = [
   "Jan",
   "Feb",
@@ -23,9 +31,24 @@ const monthNames = [
   "Dec",
 ];
 
+const formatDayLabel = (dateStr: string, count: number, isFuture: boolean) => {
+  const date = new Date(dateStr);
+  const label = date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+
+  if (isFuture) return `Future · ${label}`;
+  if (count === 0) return `No contributions · ${label}`;
+  if (count === 1) return `1 contribution · ${label}`;
+  return `${count} contributions · ${label}`;
+};
+
 export const GitHubGraph = ({ initialData = null }: GitHubGraphProps) => {
   const [data, setData] = useState<GitHubContributions | null>(initialData);
   const [loading, setLoading] = useState(!initialData);
+  const [hovered, setHovered] = useState<HoveredDay | null>(null);
 
   useEffect(() => {
     if (initialData) {
@@ -58,12 +81,13 @@ export const GitHubGraph = ({ initialData = null }: GitHubGraphProps) => {
     };
   }, [initialData]);
 
+  // Gray-green levels so empty vs active days are easy to tell apart
   const getLevelClass = (count: number) => {
-    if (count === 0) return "bg-[#1e1e20]";
-    if (count <= 3) return "bg-zinc-700";
-    if (count <= 6) return "bg-zinc-500";
-    if (count <= 9) return "bg-zinc-300";
-    return "bg-zinc-100";
+    if (count === 0) return "bg-[#161b22] ring-1 ring-inset ring-zinc-800/60";
+    if (count <= 2) return "bg-[#1b4332]";
+    if (count <= 5) return "bg-[#2d6a4f]";
+    if (count <= 9) return "bg-[#52b788]";
+    return "bg-[#95d5b2]";
   };
 
   const today = new Date();
@@ -100,6 +124,24 @@ export const GitHubGraph = ({ initialData = null }: GitHubGraphProps) => {
             <div className="relative w-full max-w-full">
               <div className="absolute inset-y-0 left-0 w-4 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
               <div className="absolute inset-y-0 right-0 w-4 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+
+              {hovered && (
+                <div
+                  className="pointer-events-none absolute z-30 -translate-x-1/2 -translate-y-full rounded-md border border-zinc-600 bg-zinc-900 px-2.5 py-1.5 shadow-lg"
+                  style={{
+                    left: hovered.x,
+                    top: hovered.y - 8,
+                  }}
+                >
+                  <p className="whitespace-nowrap font-mono text-[11px] text-zinc-100">
+                    {formatDayLabel(
+                      hovered.date,
+                      hovered.count,
+                      hovered.isFuture
+                    )}
+                  </p>
+                </div>
+              )}
 
               <div className="overflow-x-auto scrollbar-hide">
                 <div className="flex flex-col min-w-max px-2">
@@ -139,7 +181,7 @@ export const GitHubGraph = ({ initialData = null }: GitHubGraphProps) => {
                     })}
                   </div>
 
-                  <div className="flex gap-[3px]">
+                  <div className="flex gap-[3px]" onMouseLeave={() => setHovered(null)}>
                     {data.weeks.map((week, i) => (
                       <motion.div
                         key={i}
@@ -155,14 +197,27 @@ export const GitHubGraph = ({ initialData = null }: GitHubGraphProps) => {
                           return (
                             <div
                               key={day.date}
-                              className={`w-[10px] h-[10px] rounded-[2px] ${getLevelClass(
+                              className={`w-[10px] h-[10px] rounded-[2px] transition-transform duration-150 hover:scale-125 hover:z-20 ${getLevelClass(
                                 day.contributionCount
                               )} ${isFuture ? "opacity-30 blur-[1px]" : ""}`}
-                              title={
-                                isFuture
-                                  ? `Future date: ${day.date}`
-                                  : `${day.contributionCount} contributions on ${day.date}`
-                              }
+                              onMouseEnter={(e) => {
+                                const rect =
+                                  e.currentTarget.getBoundingClientRect();
+                                const parent =
+                                  e.currentTarget.closest(".relative");
+                                const parentRect =
+                                  parent?.getBoundingClientRect();
+
+                                if (!parentRect) return;
+
+                                setHovered({
+                                  date: day.date,
+                                  count: day.contributionCount,
+                                  x: rect.left - parentRect.left + rect.width / 2,
+                                  y: rect.top - parentRect.top,
+                                  isFuture,
+                                });
+                              }}
                             />
                           );
                         })}

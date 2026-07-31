@@ -33,7 +33,7 @@ const Hero = () => {
               duration={ANIMATION_MS}
             />
           </div>
-          Full-stack by skill, automation by default. I build systems so I don’t repeat the same work twice.
+          Full-stack by skill, automation by default.
         </h2>
       </div>
     </div>
