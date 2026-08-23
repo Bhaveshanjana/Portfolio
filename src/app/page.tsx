@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import Projects from "@/components/projects/Project";
 import TechStack from "@/components/TechStack";
 import { GitHubGraph } from "@/components/github/GitHubGraph";
+import { StatusBadge } from "@/components/StatusBadge";
 import SectionEffect from "@/components/utils/textEffect";
 import { getGitHubContributions } from "@/lib/github";
 
@@ -26,7 +27,10 @@ export default async function Page() {
         </SectionEffect>
 
         <SectionEffect delay={0.12}>
-          <GitHubGraph initialData={githubData} />
+          <GitHubGraph
+            initialData={githubData}
+            headerLeft={<StatusBadge />}
+          />
         </SectionEffect>
 
         <SectionEffect delay={0.15}>
