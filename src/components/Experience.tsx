@@ -45,8 +45,8 @@ const Experience = () => {
   return (
     <div className="relative mt-8 max-w-3xl">
       <div className="flex flex-col mb-6 pl-2">
-        <h2 className={`text-lg font-bold text-zinc-100 ${manrope}`}>
-          Career Growth
+        <h2 className={`text-[16px] font-bold text-zinc-200 ${manrope}`}>
+          Build Log
         </h2>
       </div>
 

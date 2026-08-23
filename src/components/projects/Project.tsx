@@ -109,7 +109,7 @@ const Project = () => {
 
   return (
     <div>
-      <SectionHeader title="Some landing page" />
+      <SectionHeader title="Build Surfaces" />
       {/* Landing page's */}
       <div className="grid md:grid-cols-2 gap-2">
         {saasProjects.map((sas, index) => (
@@ -178,7 +178,7 @@ const Project = () => {
       </div>
       
       <div className="mt-9">
-        <SectionHeader title="Projects" />
+        <SectionHeader title="Work" />
       </div>
       
       {/* Main Project card */}
