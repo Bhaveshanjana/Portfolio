@@ -23,7 +23,7 @@ const Hero = () => {
     <div>
       <div className="mt-32">
         <h2 className={`text-gray-400 text-sm md:text-[16px] ${manrope}`}>
-          <div className="flex flex-wrap items-center gap-x-2 mb-1 md:mb-2">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-1 md:mb-2">
             <span className="font-mono text-[15px] md:text-lg text-gray-200 leading-none">
               HI, I AM
             </span>

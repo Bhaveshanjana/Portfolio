@@ -45,8 +45,8 @@ const Contact = () => {
     }
   };
   return (
-    <div className="space-y-5 mt-9 mb-1">
-      <SectionHeader title="Reach me out via email" />
+    <div className="space-y-5">
+      <SectionHeader title="Reach me out" />
       <form onSubmit={sendEmailMessage}>
         <h3 className="text-gray-400 text-sm md:text-[16px] -mt-2">
           Email
@@ -83,10 +83,6 @@ const Contact = () => {
           {isEmailSending ? "Sending message..." : "Send message"}
         </button>
       </form>
-      {/* Footer */}
-      <div className="border-t border-[#27272a] -mt-2.5 text-center text-[11px] md:text-xs font-mono text-gray-300">
-        Created by Bhavesh
-      </div>
     </div>
   );
 };

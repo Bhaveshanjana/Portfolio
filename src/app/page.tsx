@@ -21,7 +21,7 @@ export default async function Page() {
 
   return (
     <div>
-      <main className="max-w-[680px] mx-auto px-5 space-y-12 pb-20">
+      <main className="max-w-[680px] mx-auto px-5 space-y-8 pb-8">
         <SectionEffect delay={0.1}>
           <Hero />
         </SectionEffect>
