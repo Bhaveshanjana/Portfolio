@@ -33,10 +33,9 @@ export const StatusBadge = () => {
 
     const load = async () => {
       try {
-        const res = await fetch("/api/work-status");
-        if (!res.ok) return;
-        const data: StatusResponse = await res.json();
-        if (!cancelled) {
+        const res = await fetch("/api/work-status", { cache: "no-store" });
+        const data: StatusResponse & { error?: string } = await res.json();
+        if (!cancelled && data.status && data.label) {
           setStatus(data.status);
           setLabel(data.label);
         }

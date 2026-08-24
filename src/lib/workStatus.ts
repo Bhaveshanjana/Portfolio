@@ -23,7 +23,8 @@ function getISTWeekday(date: Date): number {
     Fri: 5,
     Sat: 6,
   };
-  return map[day] ?? 0;
+  // Never default to Sunday — unknown weekday fails closed as weekday online label
+  return map[day] ?? 1;
 }
 
 function getISTMinutes(date: Date): number {
@@ -31,15 +32,20 @@ function getISTMinutes(date: Date): number {
     timeZone: IST,
     hour: "numeric",
     minute: "numeric",
-    hour12: false,
+    hourCycle: "h23",
   }).formatToParts(date);
 
-  const hour = Number(parts.find((p) => p.type === "hour")?.value ?? 0);
+  let hour = Number(parts.find((p) => p.type === "hour")?.value ?? 0);
   const minute = Number(parts.find((p) => p.type === "minute")?.value ?? 0);
+  if (hour === 24) hour = 0;
   return hour * 60 + minute;
 }
 
-async function fetchTodayPushTimes(): Promise<Date[]> {
+/**
+ * Authenticated events include private-repo PushEvents.
+ * Public-only endpoint misses private pushes and can lag for “online” detection.
+ */
+async function fetchTodayPushTimes(todayIST: string): Promise<Date[]> {
   const token = process.env.GITHUB_TOKEN;
   const username = process.env.GITHUB_USERNAME;
 
@@ -48,11 +54,12 @@ async function fetchTodayPushTimes(): Promise<Date[]> {
   }
 
   const res = await fetch(
-    `https://api.github.com/users/${username}/events/public?per_page=30`,
+    `https://api.github.com/users/${username}/events?per_page=50`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
         Accept: "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
       },
       cache: "no-store",
     }
@@ -63,7 +70,6 @@ async function fetchTodayPushTimes(): Promise<Date[]> {
   }
 
   const events: { type: string; created_at: string }[] = await res.json();
-  const todayIST = getISTDateString(new Date());
 
   return events
     .filter((e) => e.type === "PushEvent")
@@ -102,24 +108,40 @@ function getOnlineLabel(weekday: number): string {
   return "Online";
 }
 
-async function resolveWorkStatus(): Promise<{
+async function resolveWorkStatusForDay(dayKey: string): Promise<{
   status: WorkStatus;
   label: string;
+  dayKey: string;
+  pushCount: number;
 }> {
   const now = new Date();
-  const pushTimes = await fetchTodayPushTimes();
+  // Guard: if clock crossed midnight between key creation and run, recompute for real today
+  const todayIST = getISTDateString(now);
+  const effectiveDay = todayIST === dayKey ? dayKey : todayIST;
+
+  const pushTimes = await fetchTodayPushTimes(effectiveDay);
   const status = computeWorkStatus(now, pushTimes);
   const weekday = getISTWeekday(now);
 
   return {
     status,
     label: status === "online" ? getOnlineLabel(weekday) : "touching grass",
+    dayKey: effectiveDay,
+    pushCount: pushTimes.length,
   };
 }
 
-/** Revalidate every 5 minutes — picks up new pushes during the work day */
-export const getWorkStatus = unstable_cache(
-  resolveWorkStatus,
-  ["work-status"],
-  { revalidate: 300, tags: ["work-status"] }
+/**
+ * Day is part of the cache key so Sunday's "Breaking Sunday" cannot leak into Monday.
+ * Revalidate often so a fresh push flips online within ~1 minute.
+ */
+const getCachedWorkStatusForDay = unstable_cache(
+  resolveWorkStatusForDay,
+  ["work-status-v2"],
+  { revalidate: 60, tags: ["work-status"] }
 );
+
+export async function getWorkStatus() {
+  const dayKey = getISTDateString(new Date());
+  return getCachedWorkStatusForDay(dayKey);
+}
