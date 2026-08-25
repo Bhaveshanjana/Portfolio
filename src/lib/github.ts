@@ -103,3 +103,66 @@ export const getGitHubContributions = unstable_cache(
     tags: ["github-contributions"],
   }
 );
+
+/** Today's green-square count — same source as the graph, not just PushEvent. */
+export async function fetchTodayContributionCount(
+  dateStr: string
+): Promise<number> {
+  const token = process.env.GITHUB_TOKEN;
+  const username = process.env.GITHUB_USERNAME;
+
+  if (!token || !username) {
+    throw new Error("Missing GitHub credentials");
+  }
+
+  const from = `${dateStr}T00:00:00+05:30`;
+  const to = `${dateStr}T23:59:59+05:30`;
+
+  const query = `
+    query ($username: String!, $from: DateTime!, $to: DateTime!) {
+      user(login: $username) {
+        contributionsCollection(from: $from, to: $to) {
+          contributionCalendar {
+            weeks {
+              contributionDays {
+                date
+                contributionCount
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const res = await fetch("https://api.github.com/graphql", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query,
+      variables: { username, from, to },
+    }),
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error(`GitHub GraphQL returned ${res.status}`);
+  }
+
+  const data = await res.json();
+  if (data.errors?.length) {
+    throw new Error(data.errors[0]?.message || "GitHub GraphQL error");
+  }
+
+  const weeks =
+    data.data?.user?.contributionsCollection?.contributionCalendar?.weeks ?? [];
+  const days = weeks.flatMap(
+    (week: { contributionDays: { date: string; contributionCount: number }[] }) =>
+      week.contributionDays
+  );
+  const today = days.find((day: { date: string }) => day.date === dateStr);
+  return today?.contributionCount ?? 0;
+}

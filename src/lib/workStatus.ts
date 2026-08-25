@@ -1,9 +1,19 @@
 import { unstable_cache } from "next/cache";
 import { availability, festivalDates } from "@/data/availability";
+import { fetchTodayContributionCount } from "@/lib/github";
 
 export type WorkStatus = "online" | "offline";
 
 const IST = availability.timezone;
+
+const ACTIVITY_EVENTS = new Set([
+  "PushEvent",
+  "PullRequestEvent",
+  "PullRequestReviewEvent",
+  "IssuesEvent",
+  "IssueCommentEvent",
+  "CreateEvent",
+]);
 
 function getISTDateString(date: Date): string {
   return date.toLocaleDateString("en-CA", { timeZone: IST });
@@ -23,7 +33,6 @@ function getISTWeekday(date: Date): number {
     Fri: 5,
     Sat: 6,
   };
-  // Never default to Sunday — unknown weekday fails closed as weekday online label
   return map[day] ?? 1;
 }
 
@@ -41,50 +50,62 @@ function getISTMinutes(date: Date): number {
   return hour * 60 + minute;
 }
 
-/**
- * Authenticated events include private-repo PushEvents.
- * Public-only endpoint misses private pushes and can lag for “online” detection.
- */
-async function fetchTodayPushTimes(todayIST: string): Promise<Date[]> {
+function githubHeaders() {
   const token = process.env.GITHUB_TOKEN;
-  const username = process.env.GITHUB_USERNAME;
+  if (!token) throw new Error("Missing GitHub credentials");
+  return {
+    Authorization: `Bearer ${token}`,
+    Accept: "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28",
+  };
+}
 
-  if (!token || !username) {
+/**
+ * Events land faster than the contribution graph.
+ * GraphQL green-square count is the source the portfolio graph uses.
+ */
+async function fetchTodayActivity(todayIST: string): Promise<{
+  eventCount: number;
+  contributionCount: number;
+}> {
+  const username = process.env.GITHUB_USERNAME;
+  if (!username) {
     throw new Error("Missing GitHub credentials");
   }
 
-  const res = await fetch(
+  const eventsRes = await fetch(
     `https://api.github.com/users/${username}/events?per_page=50`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: "application/vnd.github+json",
-        "X-GitHub-Api-Version": "2022-11-28",
-      },
-      cache: "no-store",
-    }
+    { headers: githubHeaders(), cache: "no-store" }
   );
 
-  if (!res.ok) {
-    throw new Error(`GitHub events API returned ${res.status}`);
+  if (!eventsRes.ok) {
+    throw new Error(`GitHub events API returned ${eventsRes.status}`);
   }
 
-  const events: { type: string; created_at: string }[] = await res.json();
+  const events: { type: string; created_at: string }[] = await eventsRes.json();
+  const eventCount = events.filter(
+    (e) =>
+      ACTIVITY_EVENTS.has(e.type) &&
+      getISTDateString(new Date(e.created_at)) === todayIST
+  ).length;
 
-  return events
-    .filter((e) => e.type === "PushEvent")
-    .map((e) => new Date(e.created_at))
-    .filter((d) => getISTDateString(d) === todayIST);
+  let contributionCount = 0;
+  try {
+    contributionCount = await fetchTodayContributionCount(todayIST);
+  } catch {
+    /* graph can lag; events still count */
+  }
+
+  return { eventCount, contributionCount };
 }
 
 export function computeWorkStatus(
   now: Date,
-  pushTimesToday: Date[]
+  hasActivityToday: boolean
 ): WorkStatus {
   if (availability.forceOffline) return "offline";
 
   const dateStr = getISTDateString(now);
-
   if (festivalDates.includes(dateStr)) return "offline";
 
   const weekday = getISTWeekday(now);
@@ -92,18 +113,20 @@ export function computeWorkStatus(
 
   const mins = getISTMinutes(now);
   const start = availability.workStartHour * 60;
+  const noon = availability.morningCutoffHour * 60;
   const graceEnd = availability.graceEndHour * 60;
 
   if (mins < start || mins >= graceEnd) return "offline";
 
-  const hasPushToday = pushTimesToday.length > 0;
+  // 10–12: wait for first contribution. After 12: still need one today.
+  if (!hasActivityToday && mins < noon) return "offline";
+  if (!hasActivityToday) return "offline";
 
-  // 10 AM–9 PM any day: offline until first push; 8–9 PM grace if pushed today
-  return hasPushToday ? "online" : "offline";
+  return "online";
 }
 
 function getOnlineLabel(weekday: number): string {
-  if (weekday === 6) return "Shipping on Sat"; // Saturday
+  if (weekday === 6) return "Shipping on Sat";
   if (weekday === 0) return "Breaking Sunday";
   return "Online";
 }
@@ -112,32 +135,31 @@ async function resolveWorkStatusForDay(dayKey: string): Promise<{
   status: WorkStatus;
   label: string;
   dayKey: string;
-  pushCount: number;
+  eventCount: number;
+  contributionCount: number;
 }> {
   const now = new Date();
-  // Guard: if clock crossed midnight between key creation and run, recompute for real today
   const todayIST = getISTDateString(now);
   const effectiveDay = todayIST === dayKey ? dayKey : todayIST;
 
-  const pushTimes = await fetchTodayPushTimes(effectiveDay);
-  const status = computeWorkStatus(now, pushTimes);
+  const { eventCount, contributionCount } =
+    await fetchTodayActivity(effectiveDay);
+  const hasActivityToday = eventCount > 0 || contributionCount > 0;
+  const status = computeWorkStatus(now, hasActivityToday);
   const weekday = getISTWeekday(now);
 
   return {
     status,
     label: status === "online" ? getOnlineLabel(weekday) : "touching grass",
     dayKey: effectiveDay,
-    pushCount: pushTimes.length,
+    eventCount,
+    contributionCount,
   };
 }
 
-/**
- * Day is part of the cache key so Sunday's "Breaking Sunday" cannot leak into Monday.
- * Revalidate often so a fresh push flips online within ~1 minute.
- */
 const getCachedWorkStatusForDay = unstable_cache(
   resolveWorkStatusForDay,
-  ["work-status-v2"],
+  ["work-status-v3"],
   { revalidate: 60, tags: ["work-status"] }
 );
 
