@@ -1,8 +1,9 @@
-/** IST — Mon–Sun; online only after a GitHub push today (8–9 PM grace) */
+/** IST — Mon–Sun; online after a GitHub contribution today (8–9 PM grace) */
 export const availability = {
   timezone: "Asia/Kolkata",
-  workDays: [0, 1, 2, 3, 4, 5, 6], // Sun–Sat (weekends use same push rules)
+  workDays: [0, 1, 2, 3, 4, 5, 6], // Sun–Sat (weekends use same rules)
   workStartHour: 10,
+  /** Wait for first contribution until noon; stay offline if none after that */
   morningCutoffHour: 12,
   workEndHour: 20, // 8 PM — grace hour follows
   graceEndHour: 21, // offline after 9 PM
