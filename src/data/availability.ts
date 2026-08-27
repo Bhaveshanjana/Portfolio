@@ -1,9 +1,9 @@
-/** IST — Mon–Sun; online until noon, then only if there is a GitHub contribution today */
+/** IST — Mon–Sun; online 10–12 by default, or anytime a commit lands today (until 9 PM) */
 export const availability = {
   timezone: "Asia/Kolkata",
   workDays: [0, 1, 2, 3, 4, 5, 6], // Sun–Sat (weekends use same rules)
   workStartHour: 10,
-  /** Online until this hour; after that a commit/contribution is required */
+  /** After this hour, a commit/contribution is required to stay online */
   morningCutoffHour: 12,
   workEndHour: 20, // 8 PM — grace hour follows
   graceEndHour: 21, // offline after 9 PM
