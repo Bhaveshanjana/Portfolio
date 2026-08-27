@@ -53,7 +53,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className="bg-black text-zinc-100">
+      <body className="bg-black text-zinc-100 overflow-x-hidden">
         <ToastContainer position="bottom-right" theme="dark" />
         <Navbar />
         {children}

@@ -118,11 +118,9 @@ export function computeWorkStatus(
 
   if (mins < start || mins >= graceEnd) return "offline";
 
-  // 10–12: wait for first contribution. After 12: still need one today.
-  if (!hasActivityToday && mins < noon) return "offline";
-  if (!hasActivityToday) return "offline";
-
-  return "online";
+  // 10–12: online by default. After noon: offline unless there is a commit today.
+  if (mins < noon) return "online";
+  return hasActivityToday ? "online" : "offline";
 }
 
 function getOnlineLabel(weekday: number): string {
@@ -159,7 +157,7 @@ async function resolveWorkStatusForDay(dayKey: string): Promise<{
 
 const getCachedWorkStatusForDay = unstable_cache(
   resolveWorkStatusForDay,
-  ["work-status-v3"],
+  ["work-status-v4"],
   { revalidate: 60, tags: ["work-status"] }
 );
 
