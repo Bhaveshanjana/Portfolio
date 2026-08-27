@@ -79,7 +79,7 @@ export const StatusBadge = () => {
     >
       <span
         className={`inline-flex h-1.5 w-1.5 shrink-0 rounded-full ${
-          isOnline ? "bg-emerald-200" : "bg-zinc-600"
+          isOnline ? "bg-green-700" : "bg-zinc-600"
         }`}
         aria-hidden
       />
