@@ -53,8 +53,8 @@ const Navbar = () => {
       }}
       style={{ pointerEvents: isAtTop ? "auto" : "none" }}
     >
-      <div className="rounded-full w-[200px] md:w-[300px] px-2 backdrop-blur-md border border-zinc-800/80 flex items-center justify-center shadow-none bg-zinc-950/70 relative z-50">
-        <div className="flex justify-center px-2 items-center gap-8 transition-all">
+      <div className="rounded-full w-auto max-w-[calc(100vw-1.5rem)] px-3 sm:px-4 backdrop-blur-md border border-zinc-800/80 flex items-center justify-center shadow-none bg-zinc-950/70 relative z-50">
+        <div className="flex justify-center items-center gap-3 sm:gap-5 md:gap-8 transition-all">
           <a
             href="https://drive.google.com/file/d/1RO7ETBM8YmkltD1TACJlgcqMngvlwVJY/view?usp=sharing"
             target="_blank"
@@ -62,7 +62,7 @@ const Navbar = () => {
           >
             <div className={navItemOuterClass}>
               <div className={navItemInnerClass}>
-                <GoFile className="w-5 h-5 text-white" />
+                <GoFile className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
               </div>
             </div>
           </a>
@@ -70,7 +70,7 @@ const Navbar = () => {
           <Link href="https://github.com/Bhaveshanjana">
             <div className={navItemOuterClass}>
               <div className={navItemInnerClass}>
-                <FaGithub className="w-5 h-5 text-white" />
+                <FaGithub className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
               </div>
             </div>
           </Link>
@@ -78,7 +78,7 @@ const Navbar = () => {
           <Link href="https://x.com/Bhavesh2034">
             <div className={navItemOuterClass}>
               <div className={navItemInnerClass}>
-                <RiTwitterXFill className="w-5 h-5 text-white" />
+                <RiTwitterXFill className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
               </div>
             </div>
           </Link>
@@ -86,7 +86,7 @@ const Navbar = () => {
           <Link href="https://linkedin.com/in/bhavesh-anjana">
             <div className={navItemOuterClass}>
               <div className={navItemInnerClass}>
-                <IoLogoLinkedin className="w-5 h-5 text-white" />
+                <IoLogoLinkedin className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
               </div>
             </div>
           </Link>

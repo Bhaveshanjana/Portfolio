@@ -31,7 +31,7 @@ export default function SectionEffect({
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.08, margin: "0px 0px -8% 0px" }}
       variants={getBlurVariants(delay)}
       className={className}
     >
