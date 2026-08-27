@@ -163,13 +163,27 @@ export const GitHubGraph = ({
           </div>
         ) : data ? (
           <>
-            <div className="relative w-full min-w-0 max-w-full">
-              <div className="absolute inset-y-0 left-0 w-3 sm:w-4 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
-              <div className="absolute inset-y-0 right-0 w-3 sm:w-4 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+            <div className="relative w-full min-w-0 max-w-full isolate">
+              <div
+                className="pointer-events-none absolute inset-y-0 left-0 z-10 w-6 sm:w-14 bg-gradient-to-r from-black via-black/80 to-transparent"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute inset-y-0 left-0 z-10 w-4 sm:w-8 bg-black/70 blur-md"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute inset-y-0 right-0 z-10 w-6 sm:w-14 bg-gradient-to-l from-black via-black/80 to-transparent"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute inset-y-0 right-0 z-10 w-4 sm:w-8 bg-black/70 blur-md"
+                aria-hidden
+              />
 
-              <div className="overflow-x-auto overscroll-x-contain scrollbar-hide -mx-1 px-1">
-                <div className="flex flex-col min-w-max px-2">
-                  <div className="flex gap-[3px] mb-5 text-[10px] sm:text-[11px] ml-5 text-zinc-500 font-mono">
+              <div className="overflow-x-auto overscroll-x-contain scrollbar-hide">
+                <div className="flex flex-col min-w-max px-1 sm:px-2">
+                  <div className="flex gap-[2px] sm:gap-[3px] mb-4 sm:mb-5 text-[9px] sm:text-[11px] ml-3 sm:ml-5 text-zinc-500 font-mono">
                     {data.weeks.map((week, i) => {
                       let showMonth = false;
                       const date = new Date(week.contributionDays[0].date);
@@ -191,7 +205,7 @@ export const GitHubGraph = ({
                       return (
                         <div
                           key={`month-${i}`}
-                          className={`w-[10px] relative ${
+                          className={`w-[6px] sm:w-[10px] relative ${
                             isFutureMonth ? "opacity-30 blur-[1px]" : ""
                           }`}
                         >
@@ -206,13 +220,13 @@ export const GitHubGraph = ({
                   </div>
 
                   <div
-                    className="flex gap-[3px]"
+                    className="flex gap-[2px] sm:gap-[3px]"
                     onMouseLeave={() => setHovered(null)}
                   >
                     {data.weeks.map((week, i) => (
                       <motion.div
                         key={i}
-                        className="flex flex-col gap-[3px]"
+                        className="flex flex-col gap-[2px] sm:gap-[3px]"
                         initial={{ opacity: 0, y: 5 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.015, duration: 0.2 }}
@@ -224,7 +238,7 @@ export const GitHubGraph = ({
                           return (
                             <div
                               key={day.date}
-                              className={`w-[10px] h-[10px] rounded-[2px] transition-transform duration-150 hover:scale-125 hover:z-20 ${getLevelClass(
+                              className={`w-[6px] h-[6px] sm:w-[10px] sm:h-[10px] rounded-[1.5px] sm:rounded-[2px] transition-transform duration-150 hover:scale-125 hover:z-20 ${getLevelClass(
                                 day.contributionCount
                               )} ${isFuture ? "opacity-30 blur-[1px]" : ""}`}
                               onMouseEnter={() => {
