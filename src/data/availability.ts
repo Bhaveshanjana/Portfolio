@@ -6,7 +6,11 @@ export const availability = {
   /** After this hour, a commit/contribution is required to stay online */
   morningCutoffHour: 12,
   workEndHour: 20, // 8 PM — grace hour follows
-  graceEndHour: 21, // offline after 9 PM
+  graceEndHour: 21, // 9 PM — after-hours commits extend status past this
+  /** First after-hours commit (≥ 9 PM): show After hours for this many minutes */
+  afterHoursFirstExtensionMinutes: 90,
+  /** Each additional after-hours commit same night: extend from latest by this many minutes */
+  afterHoursRepeatExtensionMinutes: 120,
   /** Set true to force offline for UI testing — turn off when done */
   forceOffline: false,
 };
