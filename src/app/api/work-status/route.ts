@@ -22,8 +22,8 @@ export async function GET() {
       },
       {
         headers: {
-          // Short private cache — avoid CDN serving yesterday's weekday label
-          "Cache-Control": "private, max-age=30, stale-while-revalidate=30",
+          // Always fresh — after-hours depends on the latest GitHub push
+          "Cache-Control": "no-store",
         },
       }
     );

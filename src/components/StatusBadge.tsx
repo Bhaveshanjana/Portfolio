@@ -10,7 +10,7 @@ type StatusResponse = {
   label: string;
 };
 
-const POLL_MS = 5 * 60 * 1000;
+const POLL_MS = 60 * 1000;
 const ROLL_EVERY_MS = 3000;
 const ROLL_DURATION = 0.5;
 
@@ -79,7 +79,7 @@ export const StatusBadge = () => {
     >
       <span
         className={`inline-flex h-1.5 w-1.5 shrink-0 rounded-full ${
-          isOnline ? "bg-green-700" : "bg-zinc-600"
+          isOnline ? "bg-green-7i00" : "bg-zinc-600"
         }`}
         aria-hidden
       />
