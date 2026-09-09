@@ -1,4 +1,3 @@
-import { unstable_cache } from "next/cache";
 import { availability, festivalDates } from "@/data/availability";
 import { fetchTodayContributionCount } from "@/lib/github";
 
@@ -108,7 +107,7 @@ async function fetchTodayActivity(todayIST: string): Promise<{
   }
 
   const eventsRes = await fetch(
-    `https://api.github.com/users/${username}/events?per_page=50`,
+    `https://api.github.com/users/${username}/events?per_page=100`,
     { headers: githubHeaders(), cache: "no-store" }
   );
 
@@ -194,19 +193,13 @@ function getOnlineLabel(weekday: number): string {
   return "Online";
 }
 
-async function resolveWorkStatusForDay(dayKey: string): Promise<{
-  status: WorkStatus;
-  label: string;
-  dayKey: string;
-  eventCount: number;
-  contributionCount: number;
-}> {
+/** No unstable_cache — after-hours must react to a fresh push within one request. */
+export async function getWorkStatus() {
   const now = new Date();
-  const todayIST = getISTDateString(now);
-  const effectiveDay = todayIST === dayKey ? dayKey : todayIST;
+  const dayKey = getISTDateString(now);
 
   const { eventCount, contributionCount, activityTimestamps } =
-    await fetchTodayActivity(effectiveDay);
+    await fetchTodayActivity(dayKey);
   const hasActivityToday = eventCount > 0 || contributionCount > 0;
   const { status, label } = computeWorkStatus(
     now,
@@ -217,19 +210,8 @@ async function resolveWorkStatusForDay(dayKey: string): Promise<{
   return {
     status,
     label,
-    dayKey: effectiveDay,
+    dayKey,
     eventCount,
     contributionCount,
   };
-}
-
-const getCachedWorkStatusForDay = unstable_cache(
-  resolveWorkStatusForDay,
-  ["work-status-v6"],
-  { revalidate: 60, tags: ["work-status"] }
-);
-
-export async function getWorkStatus() {
-  const dayKey = getISTDateString(new Date());
-  return getCachedWorkStatusForDay(dayKey);
 }
