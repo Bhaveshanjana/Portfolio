@@ -102,11 +102,11 @@ export const GitHubGraph = ({
   }, [initialData]);
 
   const getLevelClass = (count: number) => {
-    if (count === 0) return "bg-[#161b22] ring-1 ring-inset ring-zinc-800/60";
-    if (count <= 2) return "bg-[#1b4332]";
-    if (count <= 5) return "bg-[#2d6a4f]";
-    if (count <= 9) return "bg-[#52b788]";
-    return "bg-[#95d5b2]";
+    if (count === 0) return "bg-[#0d1117]";
+    if (count <= 2) return "bg-[#033a16]";
+    if (count <= 5) return "bg-[#0e4429]";
+    if (count <= 9) return "bg-[#196c2e]";
+    return "bg-[#26a641]";
   };
 
   const today = new Date();
@@ -165,25 +165,17 @@ export const GitHubGraph = ({
           <>
             <div className="relative w-full min-w-0 max-w-full isolate">
               <div
-                className="pointer-events-none absolute inset-y-0 left-0 z-10 w-6 sm:w-14 bg-gradient-to-r from-black via-black/80 to-transparent"
+                className="pointer-events-none absolute inset-y-0 left-0 z-10 w-3 sm:w-5 bg-gradient-to-r from-black to-transparent"
                 aria-hidden
               />
               <div
-                className="pointer-events-none absolute inset-y-0 left-0 z-10 w-4 sm:w-8 bg-black/70 blur-md"
-                aria-hidden
-              />
-              <div
-                className="pointer-events-none absolute inset-y-0 right-0 z-10 w-6 sm:w-14 bg-gradient-to-l from-black via-black/80 to-transparent"
-                aria-hidden
-              />
-              <div
-                className="pointer-events-none absolute inset-y-0 right-0 z-10 w-4 sm:w-8 bg-black/70 blur-md"
+                className="pointer-events-none absolute inset-y-0 right-0 z-10 w-3 sm:w-5 bg-gradient-to-l from-black to-transparent"
                 aria-hidden
               />
 
               <div className="overflow-x-auto overscroll-x-contain scrollbar-hide">
                 <div className="flex flex-col min-w-max px-1 sm:px-2">
-                  <div className="flex gap-[2px] sm:gap-[3px] mb-4 sm:mb-5 text-[9px] sm:text-[11px] ml-3 sm:ml-5 text-zinc-500 font-mono">
+                  <div className="flex gap-[2px] sm:gap-[3px] mb-3 sm:mb-4 text-[9px] sm:text-[11px] ml-3 sm:ml-5 text-zinc-500 font-mono">
                     {data.weeks.map((week, i) => {
                       let showMonth = false;
                       const date = new Date(week.contributionDays[0].date);
@@ -206,7 +198,7 @@ export const GitHubGraph = ({
                         <div
                           key={`month-${i}`}
                           className={`w-[6px] sm:w-[10px] relative ${
-                            isFutureMonth ? "opacity-30 blur-[1px]" : ""
+                            isFutureMonth ? "opacity-30" : ""
                           }`}
                         >
                           {showMonth && (
@@ -238,9 +230,9 @@ export const GitHubGraph = ({
                           return (
                             <div
                               key={day.date}
-                              className={`w-[6px] h-[6px] sm:w-[10px] sm:h-[10px] rounded-[1.5px] sm:rounded-[2px] transition-transform duration-150 hover:scale-125 hover:z-20 ${getLevelClass(
+                              className={`w-[6px] h-[6px] sm:w-[10px] sm:h-[10px] rounded-[2px] sm:rounded-[2.5px] transition-transform duration-150 hover:scale-125 hover:z-20 ${getLevelClass(
                                 day.contributionCount
-                              )} ${isFuture ? "opacity-30 blur-[1px]" : ""}`}
+                              )} ${isFuture ? "opacity-25" : ""}`}
                               onMouseEnter={() => {
                                 setHovered({
                                   date: day.date,
@@ -265,8 +257,8 @@ export const GitHubGraph = ({
               </div>
             </div>
 
-            <div className="px-2 -translate-y-2">
-              <span className="font-mono text-[11px] text-slate-400/80">
+            <div className="px-2 pt-1">
+              <span className="font-mono text-[11px] text-zinc-500">
                 Total {data.totalContributions} contributions
               </span>
             </div>
