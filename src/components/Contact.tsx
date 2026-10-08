@@ -15,10 +15,20 @@ const Contact = () => {
     return emailRegex.test(email);
   };
 
+  const trimmedEmail = email.trim();
+  const trimmedMessage = message.trim();
+  const isEmailValid = validateEmail(trimmedEmail);
+  const canSend = isEmailValid && trimmedMessage.length > 0;
+
   const sendEmailMessage = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!validateEmail(email)) {
+    if (!trimmedEmail || !trimmedMessage) {
+      toast.error("Email and message are both required.");
+      return;
+    }
+
+    if (!isEmailValid) {
       toast.error("Please enter a valid email address.");
       return;
     }
@@ -26,8 +36,8 @@ const Contact = () => {
     setIsEmailSending(true);
     try {
       const response = await axios.post("/api/send-email", {
-        email,
-        message,
+        email: trimmedEmail,
+        message: trimmedMessage,
       });
 
       if (response.data.success) {
@@ -60,8 +70,14 @@ const Contact = () => {
             setEmail(e.target.value);
           }}
           placeholder="example@gmail.com"
+          required
           className="my-1 w-full mx-auto rounded-sm p-1 border-[#27272a] bg-transparent border shadow-sm placeholder:text-gray-600 placeholder:text-[12px]"
         />
+        {trimmedEmail.length > 0 && !isEmailValid && (
+          <p className="text-[11px] text-red-400/80 font-mono">
+            Enter a valid email address.
+          </p>
+        )}
         <h3 className="mt-1 text-gray-400 text-sm md:text-[16px]">
           Message
         </h3>
@@ -74,11 +90,13 @@ const Contact = () => {
             setMessage(e.target.value);
           }}
           placeholder="Enter your message"
+          required
           className="w-full mx-auto my-1 border-[#27272a] bg-transparent border shadow-sm p-1 rounded-sm placeholder:text-gray-600 placeholder:text-[12px]"
         />
         <button
           type="submit"
-          className=" w-full mx-auto text-gray-500 hover:text-white/80 rounded-md mt-2  md:text-lg font-light cursor-pointer bg-[#27272a26] p-1 transition-all duration-300 disabled:cursor-no-drop"
+          disabled={!canSend || isEmailSending}
+          className=" w-full mx-auto text-gray-500 hover:text-white/80 rounded-md mt-2  md:text-lg font-light cursor-pointer bg-[#27272a26] p-1 transition-all duration-300 disabled:cursor-no-drop disabled:opacity-40 disabled:hover:text-gray-500"
         >
           {isEmailSending ? "Sending message..." : "Send message"}
         </button>
