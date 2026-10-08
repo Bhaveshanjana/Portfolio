@@ -6,8 +6,18 @@ export async function POST(req: NextRequest) {
   try {
     const { email, message } = await req.json();
 
+    const trimmedEmail = typeof email === "string" ? email.trim() : "";
+    const trimmedMessage = typeof message === "string" ? message.trim() : "";
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+
+    if (!trimmedEmail || !trimmedMessage) {
+      return NextResponse.json(
+        { success: false, message: "Email and message are both required." },
+        { status: 400 }
+      );
+    }
+
+    if (!emailRegex.test(trimmedEmail)) {
       return NextResponse.json(
         { success: false, message: "Invalid email address format." },
         { status: 400 }
@@ -19,7 +29,7 @@ export async function POST(req: NextRequest) {
       from: "bhavesh <onboarding@resend.dev>",
       to: ["bhaveshanjana58@gmail.com"],
       subject: "Message from Your Portfolio",
-      react: EmailTemplate({ Email: email, Message: message }),
+      react: EmailTemplate({ Email: trimmedEmail, Message: trimmedMessage }),
     });
 
     if (error) {
