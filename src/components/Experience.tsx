@@ -166,7 +166,7 @@ const Experience = () => {
                     textAnchor={m.align}
                     className={`${manrope} fill-zinc-50 group-hover/node:fill-white transition-colors duration-300`}
                   >
-                    {m.exp.company}
+                    {m.exp.role || m.exp.company}
                   </text>
                 </motion.g>
               </g>
