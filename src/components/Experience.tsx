@@ -4,6 +4,7 @@ import { manrope } from "@/utils/fonts";
 import React, { useState } from "react";
 import { experiences } from "@/data/experience";
 import { motion } from "framer-motion";
+import { SectionHeader } from "./ui/SectionHeader";
 
 const LINE_DURATION = 2.5;
 const DOT_RADIUS = 3.5;
@@ -44,11 +45,7 @@ const Experience = () => {
 
   return (
     <div className="relative mt-8 max-w-3xl">
-      <div className="flex flex-col mb-6 pl-2">
-        <h2 className={`text-[16px] font-bold text-zinc-200 ${manrope}`}>
-          Build Log
-        </h2>
-      </div>
+      <SectionHeader title="Build Log" />
 
       <div className="relative w-full aspect-[3/1] sm:aspect-[3.5/1] overflow-hidden">
         <svg
