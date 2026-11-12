@@ -36,41 +36,6 @@ const Project = () => {
         "A one-click tool that lets users instantly switch their GitHub repository visibility between public and private.",
     },
     {
-      github: "https://github.com/Bhaveshanjana/TravoBot",
-      link: "https://travo-bot.vercel.app/",
-      title: "TravoBot",
-      image: "/projects/TravoBot.png",
-      category: "main",
-      description: "An AI-based travel itinerary generator powered by Gemini.",
-    },
-    {
-      title: "WipeBg",
-      image: "/projects/wipebg.png",
-      github: "https://github.com/Bhaveshanjana/WIPEBG",
-      link: "https://wipebg.vercel.app/",
-      category: "main",
-      description:
-        "A clean and simple app to remove image backgrounds instantly.",
-    },
-    {
-      title: "Blogify",
-      image: "/projects/Blogify.png",
-      category: "main",
-      github: "https://github.com/Bhaveshanjana/Blogify",
-      link: "https://blogify-one-alpha.vercel.app/",
-      description:
-        "Dynamic Blog Platform Allowing Users to Write, Publish, and Read Blogs built with next and typescript",
-    },
-    {
-      title: "DaignoBot",
-      image: "/projects/DaignoBot.png",
-      github: "https://github.com/Bhaveshanjana/DiagnoBot",
-      link: "https://diagno-bot.vercel.app/",
-      category: "main",
-      description:
-        "An AI-assisted health checker where users input symptoms to get predicted conditions.",
-    },
-    {
       title: "OpenSphere",
       image: "/projects/OpenSphere.png",
       category: "saas",
@@ -79,27 +44,12 @@ const Project = () => {
       description: "Built a landing page, with next and motion.",
     },
     {
-      title: "SSM",
-      image: "/projects/Ssm.png",
-      category: "saas",
-      link: "https://ssmin.vercel.app/",
-      description: "Built a landing page for an client, with next and motion.",
-    },
-    {
       title: "Eclypse",
       image: "/projects/Eclypse.png",
       category: "saas",
       link: "https://eclypse-sigma.vercel.app/",
       github: "https://github.com/Bhaveshanjana/Web-Assignment03",
       description: "Landing page from an assignment.",
-    },
-    {
-      title: "TaskFlow",
-      image: "/projects/TaskFlow.png",
-      category: "saas",
-      link: "https://taskflow-dashboard-template.vercel.app/",
-      github: "https://github.com/Bhaveshanjana/Taskflow-template",
-      description: "A modern productivity dashboard template optimized for workflow tracking and team collaboration.",
     },
   ];
 

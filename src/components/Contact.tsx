@@ -71,7 +71,7 @@ const Contact = () => {
           }}
           placeholder="example@gmail.com"
           required
-          className="my-1 w-full mx-auto rounded-sm p-1 border-[#27272a] bg-transparent border shadow-sm placeholder:text-gray-600 placeholder:text-[12px]"
+          className="my-1 w-full mx-auto rounded-sm p-1 border border-[#27272a] bg-transparent shadow-sm placeholder:text-gray-600 placeholder:text-[12px] outline-none focus:border-zinc-500 focus:ring-0"
         />
         {trimmedEmail.length > 0 && !isEmailValid && (
           <p className="text-[11px] text-red-400/80 font-mono">
@@ -91,12 +91,12 @@ const Contact = () => {
           }}
           placeholder="Enter your message"
           required
-          className="w-full mx-auto my-1 border-[#27272a] bg-transparent border shadow-sm p-1 rounded-sm placeholder:text-gray-600 placeholder:text-[12px]"
+          className="w-full mx-auto my-1 rounded-sm p-1 border border-[#27272a] bg-transparent shadow-sm placeholder:text-gray-600 placeholder:text-[12px] outline-none focus:border-zinc-500 focus:ring-0"
         />
         <button
           type="submit"
           disabled={!canSend || isEmailSending}
-          className=" w-full mx-auto text-gray-500 hover:text-white/80 rounded-md mt-2  md:text-lg font-light cursor-pointer bg-[#27272a26] p-1 transition-all duration-300 disabled:cursor-no-drop disabled:opacity-40 disabled:hover:text-gray-500"
+          className="w-full mx-auto text-sm text-gray-500 hover:text-white/80 rounded-md mt-2 border border-dashed border-zinc-700/80 font-light cursor-pointer bg-[#27272a26] p-1.5 transition-all duration-300 disabled:cursor-no-drop disabled:opacity-40 disabled:hover:text-gray-500"
         >
           {isEmailSending ? "Sending message..." : "Send message"}
         </button>

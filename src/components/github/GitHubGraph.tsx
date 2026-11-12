@@ -1,18 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import type { GitHubContributions } from "@/lib/github";
 
 type GitHubGraphProps = {
   initialData?: GitHubContributions | null;
   headerLeft?: React.ReactNode;
-};
-
-type HoveredDay = {
-  date: string;
-  count: number;
-  isFuture: boolean;
 };
 
 const monthNames = [
@@ -30,45 +24,12 @@ const monthNames = [
   "Dec",
 ];
 
-const formatDayLabel = (count: number, isFuture: boolean) => {
-  if (isFuture) return "Future";
-  if (count === 0) return "No contributions";
-  if (count === 1) return "1 contribution";
-  return `${count} contributions`;
-};
-
-/** Card-style blur → clear on enter / exit */
-const CommitHoverBadge = ({ label }: { label: string }) => {
-  return (
-    <motion.div
-      className="rounded-md border border-zinc-800 bg-zinc-900/95 px-2.5 py-0.5 shadow-xl backdrop-blur-sm"
-      initial={{ opacity: 0, scale: 0.98, filter: "blur(10px)" }}
-      animate={{
-        opacity: 1,
-        scale: 1,
-        filter: "blur(0px)",
-      }}
-      exit={{
-        opacity: 0,
-        scale: 0.98,
-        filter: "blur(10px)",
-      }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
-    >
-      <p className="whitespace-nowrap font-mono text-[10px] sm:text-[11px] text-zinc-100">
-        {label}
-      </p>
-    </motion.div>
-  );
-};
-
 export const GitHubGraph = ({
   initialData = null,
   headerLeft,
 }: GitHubGraphProps) => {
   const [data, setData] = useState<GitHubContributions | null>(initialData);
   const [loading, setLoading] = useState(!initialData);
-  const [hovered, setHovered] = useState<HoveredDay | null>(null);
 
   useEffect(() => {
     if (initialData) {
@@ -113,29 +74,12 @@ export const GitHubGraph = ({
   today.setHours(0, 0, 0, 0);
   const currentMonth = today.getMonth();
 
-  const hoverLabel = hovered
-    ? formatDayLabel(hovered.count, hovered.isFuture)
-    : "";
-
   return (
     <div className="py-2 w-full min-w-0">
       <div className="flex flex-col gap-2 min-w-0">
-        {/* Status left · tooltip centered — mobile-safe */}
         <div className="relative flex items-center min-h-[32px] w-full px-1 sm:px-2">
-          <div
-            className={`relative z-10 max-w-[48%] sm:max-w-[40%] shrink-0 transition-opacity duration-300 overflow-visible pl-0.5 ${
-              hovered ? "opacity-25 sm:opacity-40" : "opacity-100"
-            }`}
-          >
+          <div className="relative z-10 max-w-[48%] sm:max-w-[40%] shrink-0 overflow-visible pl-0.5">
             {headerLeft}
-          </div>
-
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center px-1">
-            <AnimatePresence mode="wait">
-              {hovered && (
-                <CommitHoverBadge key={hovered.date} label={hoverLabel} />
-              )}
-            </AnimatePresence>
           </div>
         </div>
 
@@ -211,10 +155,7 @@ export const GitHubGraph = ({
                     })}
                   </div>
 
-                  <div
-                    className="flex gap-[2px] sm:gap-[3px]"
-                    onMouseLeave={() => setHovered(null)}
-                  >
+                  <div className="flex gap-[2px] sm:gap-[3px]">
                     {data.weeks.map((week, i) => (
                       <motion.div
                         key={i}
@@ -230,23 +171,9 @@ export const GitHubGraph = ({
                           return (
                             <div
                               key={day.date}
-                              className={`w-[6px] h-[6px] sm:w-[10px] sm:h-[10px] rounded-[2px] sm:rounded-[2.5px] transition-transform duration-150 hover:scale-125 hover:z-20 ${getLevelClass(
+                              className={`w-[6px] h-[6px] sm:w-[10px] sm:h-[10px] rounded-[2px] sm:rounded-[2.5px] ${getLevelClass(
                                 day.contributionCount
                               )} ${isFuture ? "opacity-25" : ""}`}
-                              onMouseEnter={() => {
-                                setHovered({
-                                  date: day.date,
-                                  count: day.contributionCount,
-                                  isFuture,
-                                });
-                              }}
-                              onTouchStart={() => {
-                                setHovered({
-                                  date: day.date,
-                                  count: day.contributionCount,
-                                  isFuture,
-                                });
-                              }}
                             />
                           );
                         })}
